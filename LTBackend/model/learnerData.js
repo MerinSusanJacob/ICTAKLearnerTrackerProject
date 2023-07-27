@@ -24,6 +24,10 @@ const learnerSchema=mongoose.Schema({
         type:String,
         required:true
     },
+    pstatus:{
+        type:String,
+        
+    },
     createdAt:{
         type:Date,
         default:new Date()
