@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import PlacementAdd from './PlacementAdd';
+import Header from './Header';
 
 
 
@@ -9,8 +10,11 @@ const PlacementHome = () => {
   const[updation,setUpdation]=useState(false);
   const[singleval,setSingleval]=useState([]);
 
+  const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
+  const[userID,setUserID]=useState(sessionStorage.getItem("userId"))
+
   const fetchDatafromAPI=()=>{
-    axios.get("http://localhost:5000/api/getldata")
+    axios.get("http://localhost:5000/api/getldata/"+userToken)
     .then((response)=>{
       console.log("data from get",response.data);
       setData(response.data);
@@ -23,26 +27,28 @@ const PlacementHome = () => {
     setSingleval(val);
   }
 
-  const deleteLearner=(id)=>{
-    axios.delete(`http://localhost:5000/api/delldata/${id}`)
-    .then((response)=>{
-        if(response.data.message==="Deleted successfully"){
-          alert(response.data.message); 
-                fetchDatafromAPI();
-            }
-            else{
-                alert(response.data.message);
-            }
-    })
-    .catch((err)=>{console.log(err)})
-  }
+  // const deleteLearner=(id)=>{
+  //   axios.delete(`http://localhost:5000/api/delldata/${id}`)
+  //   .then((response)=>{
+  //       if(response.data.message==="Deleted successfully"){
+  //         alert(response.data.message); 
+  //               fetchDatafromAPI();
+  //           }
+  //           else{
+  //               alert(response.data.message);
+  //           }
+  //   })
+  //   .catch((err)=>{console.log(err)})
+  // }
 
   useEffect(()=>{
     fetchDatafromAPI()
   },[]);
 
   let finalJSX= 
+  
   <div className="container w-75 mt-4 pt-4">
+    
   {/* <a href="/tadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a> */}
   <br></br>
   <table className="table table-responsive table-striped">
@@ -77,6 +83,7 @@ const PlacementHome = () => {
 
 if(updation) finalJSX=<PlacementAdd method='put' data={singleval}/>
   return (
+   
       finalJSX
   )
 }

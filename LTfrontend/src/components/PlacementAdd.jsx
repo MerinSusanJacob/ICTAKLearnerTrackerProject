@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 const PlacementAdd = (props) => {
     console.log("props data",props.data);
     const[inputs,setInputs]=useState(props.data);
-    const navigate=useNavigate();
+    // const navigate=useNavigate();
 
 const inputHandler=(e)=>{
     const{name,value}=e.target;

@@ -8,6 +8,8 @@ app.use(cors());
 
 require('./db/mongodb');
 
+const userRoute=require('./routes/userRoute')
+app.use('/api',userRoute);
 const trainerRoute=require('./routes/trainerRoute');
 app.use('/api',trainerRoute);
 const placementRoute=require('./routes/placementRoute');

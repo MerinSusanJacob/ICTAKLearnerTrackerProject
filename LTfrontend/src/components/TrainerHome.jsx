@@ -8,8 +8,11 @@ const Trainerhead = () => {
   const[updation,setUpdation]=useState(false);
   const[singleval,setSingleval]=useState([]);
 
+  const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
+    const[userID,setUserID]=useState(sessionStorage.getItem("userId"))
+
   const fetchDatafromAPI=()=>{
-    axios.get("http://localhost:5000/api/getpdata")
+    axios.get("http://localhost:5000/api/getldata/"+userToken)
     .then((response)=>{
       console.log("data from get",response.data);
       setData(response.data);
@@ -42,6 +45,7 @@ const Trainerhead = () => {
 
   let finalJSX= 
   <div className="container w-75 mt-4 pt-4">
+    
   <a href="/tadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a>
   <br></br>
   <table className="table table-responsive table-striped">
