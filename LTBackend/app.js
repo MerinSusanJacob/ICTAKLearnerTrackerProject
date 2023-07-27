@@ -8,9 +8,10 @@ app.use(cors());
 
 require('./db/mongodb');
 
-const api=require('./routes/trainerRoute');
-app.use('/api',api);
-
+const trainerRoute=require('./routes/trainerRoute');
+app.use('/api',trainerRoute);
+const placementRoute=require('./routes/placementRoute');
+app.use('/api',placementRoute);
 
 const PORT=process.env.PORT;
 app.listen(PORT,()=>{
