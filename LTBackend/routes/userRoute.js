@@ -3,6 +3,7 @@ const userData = require('../model/userData')
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
+
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }))
 

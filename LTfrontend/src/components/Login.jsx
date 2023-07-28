@@ -22,11 +22,11 @@ const Login = () => {
             .then((response) => {
                 if (response.data.message === "Login Successfull!!") {
                     const token = response.data.token;
-                    const userid = response.data.data._id;
-                    console.log(token);
-                    console.log(userid);
+                    const role = response.data.data.role;
+                    // console.log(token);
+                    // console.log(role);
                     sessionStorage.setItem('userToken', token)
-                    sessionStorage.setItem('userId', userid)
+                    sessionStorage.setItem('userRole', role)
                     alert(response.data.message)
                     navigate('/home')
                 }
@@ -34,16 +34,17 @@ const Login = () => {
                     alert(response.data.message)
                 }
             })
+            .catch(err => console.log(err));
     }
 
 
 
     return (
         <div>
-             {/* FORMS STARTS */}
-             <div className="container mx-auto p-xs-2 p-lg-5 w-xs-75 w-lg-25 border bg-light rounded col-sm-10 col-md-4 col-lg-4 col-xl-4 mt-5">
-            <img src={ictlogo} className="App-logo mb-2" alt="logo" />
-            <p class="fw-light fs-4">ICTAK Learner Tracker App</p>
+            {/* FORMS STARTS */}
+            <div className="container mx-auto p-xs-2 p-lg-5 w-xs-75 w-lg-25 border bg-light rounded col-sm-10 col-md-4 col-lg-4 col-xl-4 mt-5">
+                <img src={ictlogo} className="App-logo mb-2" alt="logo" />
+                <p class="fw-light fs-4">ICTAK Learner Tracker App</p>
                 <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12"></div>
 

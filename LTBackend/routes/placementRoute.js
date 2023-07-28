@@ -5,9 +5,9 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 const learnerData = require('../model/learnerData');
-
+const auth = require("../authz.js/auth")
 //to get data
-router.get('/getpdata', async (req, res) => {
+router.get('/getpdata', auth, async (req, res) => {
     try {
         const data = await learnerData.find();
         res.json(data);
@@ -17,7 +17,7 @@ router.get('/getpdata', async (req, res) => {
 })
 
 //to post data
-router.post('/postpdata', (req, res) => {
+router.post('/postpdata', auth, (req, res) => {
     try {
         const item = req.body;
         const newdata = new learnerData(item);
@@ -29,7 +29,7 @@ router.post('/postpdata', (req, res) => {
 })
 
 //to update data
-router.put('/putpdata/:id', async (req, res) => {
+router.put('/putpdata/:id', auth, async (req, res) => {
     try {
         const item = req.body;
         const index = req.params.id;
