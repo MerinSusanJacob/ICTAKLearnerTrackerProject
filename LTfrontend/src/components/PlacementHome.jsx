@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import PlacementAdd from './PlacementAdd';
-import Header from './Header';
+
 
 
 
@@ -11,8 +11,8 @@ const PlacementHome = () => {
   const [singleval, setSingleval] = useState([]);
 
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
-  const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
-
+  const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+  console.log(userRole)
   const fetchDatafromAPI = () => {
     axios.get("http://localhost:5000/api/getldata/" + userToken)
       .then((response) => {
@@ -73,8 +73,11 @@ const PlacementHome = () => {
               <td>{value.batch}</td>
               <td>{value.cstatus}</td>
               <td>{value.pstatus}</td>
-              <td><button className="btn btn-success" onClick={() => updateLearner(value)}><ion-icon name="create"></ion-icon></button></td>
-              {/* <td><button className="btn btn-danger" class='disable' onClick={()=>deleteLearner(value._id)}><ion-icon name="close-circle"></ion-icon></button></td> */}
+              {userRole != 'traininghead' && (
+
+                <>
+                  <td><button className="btn btn-success" onClick={() => updateLearner(value)}><ion-icon name="create"></ion-icon></button></td>
+                </>)}
             </tr>
           })}
         </tbody>

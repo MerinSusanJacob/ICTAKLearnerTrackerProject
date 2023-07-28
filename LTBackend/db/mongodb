@@ -1,8 +1,8 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect(process.env.mongodb_url)
-.then(()=>{
-    console.log(`Connected to Mongodb atlas`);
-})
-.catch(()=>{
-    console.log(`Error!! Cannot connect to db`);
-})
+    .then(() => {
+        console.log(`Connected to Mongodb atlas`);
+    })
+    .catch(() => {
+        console.log(`Error!! Cannot connect to db`);
+    })

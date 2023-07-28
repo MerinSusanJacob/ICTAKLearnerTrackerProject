@@ -6,11 +6,11 @@ router.use(express.urlencoded({ extended: true }));
 
 const learnerData = require('../model/learnerData');
 const jwt = require('jsonwebtoken')
-
+const auth = require('../authz.js/auth');
 
 //to get data
 
-router.get('/getldata/:token', async (req, res) => {
+router.get('/getldata/:token', auth, async (req, res) => {
     const data = await learnerData.find();
     try {
         jwt.verify(req.params.token, "ict",
@@ -28,7 +28,7 @@ router.get('/getldata/:token', async (req, res) => {
 })
 
 //to post data
-router.post('/postldata', (req, res) => {
+router.post('/postldata', auth, (req, res) => {
     try {
         const item = req.body;
         const newdata = new learnerData(item);
@@ -49,7 +49,7 @@ router.post('/postldata', (req, res) => {
 })
 
 //to update data
-router.put('/putldata/:id', async (req, res) => {
+router.put('/putldata/:id', auth, async (req, res) => {
     try {
         const item = req.body;
         const index = req.params.id;
@@ -61,7 +61,7 @@ router.put('/putldata/:id', async (req, res) => {
 })
 
 //to delete data
-router.delete('/delldata/:id', (req, res) => {
+router.delete('/delldata/:id', auth, (req, res) => {
     try {
         const ind = req.params.id;
         learnerData.findByIdAndDelete(ind).exec();
