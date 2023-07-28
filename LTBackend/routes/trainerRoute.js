@@ -13,20 +13,20 @@ const jwt = require('jsonwebtoken')
 router.get('/getldata/:token', async (req, res) => {
     const data = await learnerData.find();
     try {
-       jwt.verify(req.params.token,"ict",
-       (error,decoded)=>{
-        if(decoded&&decoded.email){
-            res.json(data);
-        }else{
-            res.json({ message: "Unauthorised User" });
-        }
-       }) 
-        
+        jwt.verify(req.params.token, "ict",
+            (error, decoded) => {
+                if (decoded && decoded.email) {
+                    res.json(data);
+                } else {
+                    res.json({ message: "Unauthorised User" });
+                }
+            })
+
     } catch (error) {
         res.json({ message: "Not successful" });
     }
 })
-  
+
 //to post data
 router.post('/postldata', (req, res) => {
     try {
@@ -39,7 +39,7 @@ router.post('/postldata', (req, res) => {
                     res.json({ message: "Posted successfully" });
 
                 } else {
-                    res.json({message:"Unauthorised User"})
+                    res.json({ message: "Unauthorised User" })
                 }
             })
 

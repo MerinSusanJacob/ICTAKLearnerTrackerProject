@@ -8,7 +8,7 @@ const TrainerAdd = (props) => {
     const navigate = useNavigate();
 
     const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
-    const[userID,setUserID]=useState(sessionStorage.getItem("userId"))
+    const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
     const inputHandler = (e) => {
         const { name, value } = e.target;
         setInputs({
@@ -17,16 +17,16 @@ const TrainerAdd = (props) => {
     }
 
     const submitHandler = () => {
-        let data={
-            userId:userID,
-            token:userToken,
-            learnerid:inputs.learnerid,
-            name:inputs.name, 
-            course:inputs.course,
-            project:inputs.project,
-            batch:inputs.batch,
-            cstatus:inputs.cstatus,
-            pstatus:inputs.pstatus
+        let data = {
+            userId: userID,
+            token: userToken,
+            learnerid: inputs.learnerid,
+            name: inputs.name,
+            course: inputs.course,
+            project: inputs.project,
+            batch: inputs.batch,
+            cstatus: inputs.cstatus,
+            pstatus: inputs.pstatus
 
         }
 

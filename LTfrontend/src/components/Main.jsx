@@ -4,8 +4,8 @@ import Header from './Header'
 const Main = (props) => {
   return (
     <div>
-        <Header/>
-        {props.child}
+      <Header />
+      {props.child}
     </div>
   )
 }

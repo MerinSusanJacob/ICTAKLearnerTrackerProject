@@ -18,14 +18,14 @@ const Login = () => {
     const addHandler = () => {
         console.log("Clicked", user)
         axios.post("http://localhost:5000/api/login", user)
-            .then((response) => { 
+            .then((response) => {
                 if (response.data.message === "Login Successfull!!") {
-                    const token=response.data.token;
-                    const userid=response.data.data._id;
+                    const token = response.data.token;
+                    const userid = response.data.data._id;
                     console.log(token);
                     console.log(userid);
-                    sessionStorage.setItem('userToken',token)
-                    sessionStorage.setItem('userId',userid)
+                    sessionStorage.setItem('userToken', token)
+                    sessionStorage.setItem('userId', userid)
                     alert(response.data.message)
                     navigate('/home')
                 }
@@ -39,8 +39,8 @@ const Login = () => {
 
     return (
         <div>
-             <p class="fw-light fs-4">ICTAK Learner Tracker App</p>
-           
+            <p class="fw-light fs-4">ICTAK Learner Tracker App</p>
+
             {/* FORMS STARTS */}
             <div className="container">
                 <div className="row">

@@ -1,7 +1,7 @@
 const express = require('express')
 const userData = require('../model/userData')
 const router = express.Router();
-const jwt=require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }))
@@ -13,7 +13,7 @@ router.use(express.urlencoded({ extended: true }))
 //PLACEMENT OFFICER  *username:>placement *password:>password
 //TRAINING HEAD      *username:>training  *password:>password
 
-  
+
 //LOGIN API
 router.post('/login', async (req, res) => {
     let username = req.body.username;
@@ -25,17 +25,17 @@ router.post('/login', async (req, res) => {
     }
     try {
         if (user.password == password) {
-            jwt.sign({email: username,id: user._id},"ict",{expiresIn: "1d"},
-            (error,token)=>{
-                if (error) {
-                    res.json({message:"Token not generated"})
-                    
-                } else {
-                    res.json({ message: "Login Successfull!!",token:token,data:user })
-                }
-            })
-           
-        } 
+            jwt.sign({ email: username, id: user._id }, "ict", { expiresIn: "1d" },
+                (error, token) => {
+                    if (error) {
+                        res.json({ message: "Token not generated" })
+
+                    } else {
+                        res.json({ message: "Login Successfull!!", token: token, data: user })
+                    }
+                })
+
+        }
         else {
             res.json({ message: "Login Failed!!" })
         }
@@ -63,4 +63,4 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-module.exports=router; 
+module.exports = router; 
