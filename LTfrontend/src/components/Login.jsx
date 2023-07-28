@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ictlogo from '../ictlogo.png'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -39,27 +40,27 @@ const Login = () => {
 
     return (
         <div>
+             {/* FORMS STARTS */}
+             <div className="container mx-auto p-xs-2 p-lg-5 w-xs-75 w-lg-25 border bg-light rounded col-sm-10 col-md-4 col-lg-4 col-xl-4 mt-5">
+            <img src={ictlogo} className="App-logo mb-2" alt="logo" />
             <p class="fw-light fs-4">ICTAK Learner Tracker App</p>
-
-            {/* FORMS STARTS */}
-            <div className="container">
                 <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12"></div>
 
-                    <div className="row g-3">
+                    <div className="row">
 
-                        <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                            <label htmlFor="" className="form-label">Username</label>
+                        <div className="col col-12 col-sm-12 col-md-12 col-lg-12">
+                            <label htmlFor="" className="form-label d-flex text-right">Username</label>
                             <input type="text" className="form-control" name="username" onChange={inputHandler} />
                         </div>
 
-                        <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                            <label htmlFor="" className="form-label">Password</label>
+                        <div className="col col-12 col-sm-12 col-md-12 col-lg-12">
+                            <label htmlFor="" className="form-label d-flex text-right">Password</label>
                             <input type='password' className="form-control pwd" name="password" onChange={inputHandler} />
                         </div>
 
-                        <div className="col col-12 col-sm-12 col-md-12 col-lg-12">
-                            <button className="btn btn-success" onClick={addHandler}>Login</button>
+                        <div className="col col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+                            <button className="btn btn-success w-100" onClick={addHandler}>Login</button>
                         </div>
 
 
