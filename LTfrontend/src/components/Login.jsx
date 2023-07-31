@@ -67,7 +67,7 @@ const Login = () => {
 
 
                     </div>
-                    {/* FORMS ENDS */}
+                    {/* FORMS ENDS */} 
                 </div>
             </div>
 
