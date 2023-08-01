@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ictlogo from "../ictlogo.png";
 import { Container, Alert } from "react-bootstrap";
+import background from "../background.jpeg";
 
 const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [showAlert, setShowAlert] = useState(false); // State variable for showing the alert
   const [alertMessage, setAlertMessage] = useState(""); // State variable to hold the alert message
+  // const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
 
   const inputHandler = (e) => {
     console.log("onchange");
@@ -48,19 +50,54 @@ const Login = () => {
     }, 2000); // Navigate after 3 seconds (adjust the duration as needed)
   };
 
+  // const navigateToHome = () => {
+  //   console.log("login");
+    
+  //     {userRole === 'Admin' && (
+  //     <>
+  //     navigate("/ahome");
+  //     </>
+  //     )}
+
+  //     {userRole === 'Placement Officer' && (
+  //       <>
+  //       navigate("/phome");
+  //       </>
+  //     )}
+
+  //     {userRole === 'Training Head' && (
+  //       <>
+  //       navigate("/thome");
+  //       </>
+  //     )}
+  // };
+
+
+
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${background})`, backgroundSize:"cover", height:"100vh"}}>
+      <div className="row">
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12"></div>
+      </div>
+      
       {/* FORMS STARTS */}
       <div className="container mx-auto p-xs-2 p-lg-5 w-xs-75 w-lg-25 border bg-light rounded col-sm-10 col-md-4 col-lg-4 col-xl-4 mt-5">
         <img src={ictlogo} className="App-logo mb-2" alt="logo" />
-        <p class="fw-light fs-4">ICTAK Learner Tracker App</p>
+
+        <br></br>
+        <br></br>
+
+        <p className="fw-bolder fs-4">ICTAK - Learner Tracker App</p>
+        
+
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12"></div>
 
           <div className="row">
+            {/* Username */}
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12">
               <label htmlFor="" className="form-label d-flex text-right">
-                Username
+              Username
               </label>
               <input
                 type="text"
@@ -69,7 +106,7 @@ const Login = () => {
                 onChange={inputHandler}
               />
             </div>
-
+            {/* Password */}
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12">
               <label htmlFor="" className="form-label d-flex text-right">
                 Password
@@ -81,20 +118,18 @@ const Login = () => {
                 onChange={inputHandler}
               />
             </div>
-
-            <div className="row">
+            <br></br>
+            <br></br>
+            {/* Login Button */}
               <div className="col col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
                 <button className="btn btn-success w-100" onClick={addHandler}>
                   Login
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Display the Bootstrap Alert based on showAlert state */}
-        {showAlert && (
-          <Container className="p-4">
+            {/* Display the Bootstrap Alert based on showAlert state */}
+            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
+            {showAlert && (
+           <Container className="p-4">
             <Alert
               variant={
                 alertMessage === "Login Successfull!!" ? "success" : "danger"
@@ -105,10 +140,20 @@ const Login = () => {
               {alertMessage}
             </Alert>
           </Container>
-          
-        )}
+           )}
+            </div>
+
+        </div>
+        </div>
       </div>
+      {/* FORMS ENDS */}
+      {/* FOOTER STARTS */}
+    <footer className="flex-shrink-0 py-2 bg-dark text-white-50 fixed-bottom">
+     <p class="text-center"> Copyright@ICTAK</p>
+    </footer>
+    {/* FOOTER ENDS */}
     </div>
+    
   );
 };
 

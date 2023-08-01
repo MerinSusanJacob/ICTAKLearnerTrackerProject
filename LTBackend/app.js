@@ -13,8 +13,13 @@ app.use('/api', userRoute);
 
 const trainerRoute = require('./routes/trainerRoute');
 app.use('/api', trainerRoute);
+
 const placementRoute = require('./routes/placementRoute');
 app.use('/api', placementRoute);
+
+const usertpRoute=require('./routes/usertpRoute');
+app.use('/api',usertpRoute);
+
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

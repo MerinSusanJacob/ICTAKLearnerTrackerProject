@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import TrainerHome from './components/TrainerHome';
 import TrainerAdd from './components/TrainerAdd';
 
@@ -9,7 +9,9 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Main from './components/Main';
 import Admin from './components/Admin';
-
+import AdminHome from './components/AdminHome';
+import AdminAdd from './components/AdminAdd';
+import Sidebar from './components/Sidebar';
 
 function App() {
   return (
@@ -31,6 +33,16 @@ function App() {
             cstatus: ""
           }
         } />} />} />
+        <Route path="/ahome"  element={<Main child={<AdminHome/>}/>}/>
+        <Route path="/aadd" element={<Main child={<AdminAdd method="post" data={
+          {name:"",
+          email:"",
+          username:"",
+          password:"",
+          role:""
+          }
+          }/>}/>} />
+        <Route path="/sidebar" element={<Sidebar/>}/>
       </Routes>
 
 
