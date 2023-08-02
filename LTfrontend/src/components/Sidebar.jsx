@@ -4,33 +4,48 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import { useNavigate } from "react-router-dom"
 import '../App.css'
 
+
 const Sidebar = () => {
-//   const [showSidebar, setShowSidebar] = useState(false);
-//   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
-//   const toggleSidebar = () => {
-//     setShowSidebar(!showSidebar);
-//   };
+
     const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+    const [userName, setUsername] = useState(sessionStorage.getItem("userName"));
     const navigate = useNavigate();
     const logout = () => {
     sessionStorage.removeItem("userToken");
     navigate("/")
     }
   return (
-    // <div style={{width: "250px", height: "100vh", backgroundColor: "#808080"}}>
       <div className='container-fluid p-0'>
 
       <div className="row">
         {/* Sidebar Starts */}
-       <div className="bg-dark col-auto col-md-2 p-0 min-vh-100 d-flex justify-content-between flex-column">
-        <div>
+       <div className="bg-dark col-auto col-md-2 p-0 min-vh-100 d-flex  flex-column">
+        
+        <div className="bg-secondary">
         <br></br>
-        <a className='text-decoration-none text-white  mt-5 mb-2'>
+        <ul class="nav flex-column">
+        <li class="nav-item text-white my-1">
+                      <span className="bi bi-person-bounding-box fs-1"></span>  
+        </li>
+        <li class="nav-item text-white my-1">
+                      <span className="ms-2 fs-5">{userName}</span>
+        </li>
+        <li class="nav-item text-white my-1">
+                      <span className="ms-2">{userRole}</span>
+        </li>
+        </ul>
+        </div>
+
+
+        <div className="bg-success py-2">
+        <a className='text-decoration-none text-white mb-2 py-5'>
             <span className="fs-4">ICTAK-LearnerTracker</span>
         </a>
-        <hr className='text-secondary'/>
+        </div>
+
+
+        <div>
         <br></br>
-        
         <ul class="nav nav-pills flex-column">
 
         {userRole === 'Admin' && (
@@ -38,7 +53,7 @@ const Sidebar = () => {
         <li class="nav-item text-white my-1">
                     <a class="nav-link text-white" aria-current="page" href="/ahome">
                         <i class="bi bi-people"></i>
-                        <span className="ms-2">Users</span>
+                        <span className="ms-2 d-none d-sm-inline">Users</span>
                     </a>
         </li>
         </>
@@ -49,7 +64,7 @@ const Sidebar = () => {
         <li class="nav-item text-white my-1">
                     <a class="nav-link text-white" aria-current="page" href="/thome">
                         <i class="bi bi-book"></i>
-                        <span className="ms-2">Learners </span>
+                        <span className="ms-2 d-none d-sm-inline">Learners </span>
                     </a>
         </li>
         </>
@@ -60,7 +75,7 @@ const Sidebar = () => {
         <li class="nav-item text-white my-1">
                     <a class="nav-link text-white" aria-current="page" href="/phome">
                         <i class="bi bi-person-workspace"></i>
-                        <span className="ms-2">Placement </span>
+                        <span className="ms-2 d-none d-sm-inline">Placement </span>
                     </a>
         </li>
         </>
@@ -68,13 +83,14 @@ const Sidebar = () => {
 
         </ul>
         </div>
-
-        <div>
-        <ul className="nav nav-pills flex-column mb-5 mb-lg-0">
-        <li className="nav-item text-white my-1  ">
+        
+        <div className="mt-auto">
+        <ul className="nav nav-pills flex-column mb-5 mb-lg-4">
+        <li className="nav-item text-white my-1">
+                <hr className='text-secondary'/>
                 <a className="nav-link text-white" onClick={logout} href="/">
                 <i class="bi bi-box-arrow-left"></i>   
-                <span className="ms-2">Logout </span>
+                <span className="ms-2 d-none d-sm-inline">Logout </span>
                 </a>
         </li>
         </ul>
@@ -82,21 +98,8 @@ const Sidebar = () => {
         
        </div>
 
-       {/* Sidebar Ends */}
-       {/* Header Starts */}
-       {/* <div className="col-auto  col-md-10 ps-0">
-       <nav class="navbar navbar-expand-lg bg-success">
-        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li className="nav-item ">
-                <a className="nav-link active text-white" onClick={logout} href="/"><ion-icon name="power-outline" size="large" color="white"></ion-icon></a>
-        </li>
-        </ul>
-       </nav>
-       </div> */}
-       {/* Header Ends */}
       </div>
       </div>
-    // </div>
   )
 }
 
