@@ -10,7 +10,6 @@ const Login = () => {
   const [user, setUser] = useState({});
   const [showAlert, setShowAlert] = useState(false); // State variable for showing the alert
   const [alertMessage, setAlertMessage] = useState(""); // State variable to hold the alert message
-  // const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
 
   const inputHandler = (e) => {
     console.log("onchange");
@@ -28,13 +27,13 @@ const Login = () => {
         if (response.data.message === "Login Successfull!!") {
           const token = response.data.token;
           const role = response.data.data.role;
-          // console.log(token);
-          // console.log(role);
+          const nameUser=response.data.data.name;
           sessionStorage.setItem("userToken", token);
           sessionStorage.setItem("userRole", role);
+          sessionStorage.setItem("userName", nameUser);
           setShowAlert(true); // Show the success alert
           setAlertMessage(response.data.message); // Set the success alert message
-          navigateToHome(); // Call a separate function to navigate to the home page after showing the alert
+          navigateToHome(role); // Call a separate function to navigate to the home page after showing the alert
         } else {
           setShowAlert(true); // Show the error alert
           setAlertMessage(response.data.message); // Set the error alert message
@@ -44,35 +43,27 @@ const Login = () => {
   };
 
   // Function to navigate to the home page
-  const navigateToHome = () => {
-    setTimeout(() => {
-      navigate("/home");
-    }, 2000); // Navigate after 3 seconds (adjust the duration as needed)
-  };
-
   // const navigateToHome = () => {
-  //   console.log("login");
-    
-  //     {userRole === 'Admin' && (
-  //     <>
-  //     navigate("/ahome");
-  //     </>
-  //     )}
-
-  //     {userRole === 'Placement Officer' && (
-  //       <>
-  //       navigate("/phome");
-  //       </>
-  //     )}
-
-  //     {userRole === 'Training Head' && (
-  //       <>
-  //       navigate("/thome");
-  //       </>
-  //     )}
+  //   setTimeout(() => {
+  //     navigate("/home");
+  //   }, 2000); // Navigate after 3 seconds (adjust the duration as needed)
   // };
 
-
+  const navigateToHome = (role) => {
+    console.log("login");
+     if(role==='Admin')
+     {
+      navigate("/ahome");
+     }
+     else if(role==='Placement Officer')
+     {
+      navigate("/phome");
+     }
+     else if(role==='Training Head')
+     {
+      navigate("/thome");
+     }
+  };
 
   return (
     <div style={{ backgroundImage: `url(${background})`, backgroundSize:"cover", height:"100vh"}}>
@@ -87,7 +78,8 @@ const Login = () => {
         <br></br>
         <br></br>
 
-        <p className="fw-bolder fs-4">ICTAK - Learner Tracker App</p>
+        
+        <p className="fw-light fs-3">ICTAK - Learner Tracker</p>
         
 
         <div className="row">
