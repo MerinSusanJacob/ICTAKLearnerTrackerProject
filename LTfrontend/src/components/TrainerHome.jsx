@@ -44,13 +44,14 @@ const Trainerhead = () => {
   }, []);
 
   let finalJSX =
-    <div className="container w-75 mt-4 pt-4">
+    <div className="container w-75 mt-5 pt-5">
 
-      <a href="/tadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a>
+      <a href="/tadd" className="text-decoration-none"><button className="btn btn-success d-flex">Add Learners</button></a>
       <br></br>
-      <table className="table table-responsive table-striped">
+      <br></br>
+      <table className="table table-responsive table-hover table-striped">
         <thead>
-          <tr>
+          <tr className='table-dark'>
             <th>Learner Id</th>
             <th>Name</th>
             <th>Course</th>
@@ -58,6 +59,8 @@ const Trainerhead = () => {
             <th>Batch</th>
             <th>Course Status</th>
             <th>Placement Status</th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>

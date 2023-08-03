@@ -41,17 +41,20 @@ const AdminHome = () => {
   },[]);
 
   let finalJSX= 
-  <div className="container w-75 mt-4 pt-4">
-  <a href="/aadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a>
+  <div className="container w-75 mt-5 pt-5">
+  <a href="/aadd" className="text-decoration-none"><button className="btn btn-success d-flex">Add Users</button></a>
   <br></br>
-  <table className="table table-responsive table-striped">
+  <br></br>
+  <table className="table table-responsive table-hover table-striped">
   <thead>
-  <tr>
+  <tr className='table-dark'>
       <th>Name</th>
       <th>Email ID</th>
       <th>Username</th>
       <th>Password</th>
       <th>Role</th>
+      <th>Update</th>
+      <th>Delete</th>
   </tr>
   </thead>
   <tbody>

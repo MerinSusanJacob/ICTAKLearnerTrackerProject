@@ -202,7 +202,7 @@ const TrainerAdd = (props) => {
                                         <button className="btn btn-success" onClick={submitHandler}>Submit</button>
                                     </div>
                                     {/* Button */}
-                                    <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mb-3">
+                                    <div className="col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-3">
                                         <a href="/thome"><button className="btn btn-warning">Back to Dashboard</button></a>
                                     </div>
                                 </div>

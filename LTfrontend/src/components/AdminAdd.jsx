@@ -47,7 +47,7 @@ const submitHandler=()=>{
 }
 return (
 <div>
-<div className="container w-50 mt-5 pt-5 bg-secondary-subtle rounded">
+<div className="container w-75 mt-5 pt-5 bg-secondary-subtle rounded">
             <h3>Add Users</h3>
             <br></br>
             <div className="row">
@@ -156,7 +156,7 @@ return (
                     <button className="btn btn-success" onClick={submitHandler}>Submit</button>
                 </div>
                 {/* Button */}
-                <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mb-3">
+                <div className="col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-4">
                     <a href="/ahome"><button className="btn btn-warning">Back to Dashboard</button></a>
                 </div>
                 </div>

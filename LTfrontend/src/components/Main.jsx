@@ -8,10 +8,10 @@ const Main = (props) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col col-3 col-sm-3 col-md-3 col-lg-3">
+        <div className="col col-2 col-sm-2 col-md-2 col-lg-2">
           <Sidebar/>
         </div>
-        <div className="col col-9 col-sm-9 col-md-9 col-lg-9">
+        <div className="col col-10 col-sm-10 col-md-10 col-lg-10">
           {props.child}
         </div>
       </div>

@@ -27,33 +27,18 @@ const PlacementHome = () => {
     setSingleval(val);
   }
 
-  // const deleteLearner=(id)=>{
-  //   axios.delete(`http://localhost:5000/api/delldata/${id}`)
-  //   .then((response)=>{
-  //       if(response.data.message==="Deleted successfully"){
-  //         alert(response.data.message); 
-  //               fetchDatafromAPI();
-  //           }
-  //           else{
-  //               alert(response.data.message);
-  //           }
-  //   })
-  //   .catch((err)=>{console.log(err)})
-  // }
-
   useEffect(() => {
     fetchDatafromAPI()
   }, []);
 
   let finalJSX =
 
-    <div className="container w-75 mt-4 pt-4">
+    <div className="container w-75 mt-5 pt-5">
 
-      {/* <a href="/tadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a> */}
       <br></br>
-      <table className="table table-responsive table-striped">
+      <table className="table table-responsive table-striped table-hover">
         <thead>
-          <tr>
+          <tr className='table-dark'>
             <th>Learner Id</th>
             <th>Name</th>
             <th>Course</th>
@@ -61,6 +46,7 @@ const PlacementHome = () => {
             <th>Batch</th>
             <th>Course Status</th>
             <th>Placement Status</th>
+            <th>Update</th>
           </tr>
         </thead>
         <tbody>
