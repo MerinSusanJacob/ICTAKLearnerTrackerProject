@@ -14,13 +14,12 @@ const Sidebar = () => {
     sessionStorage.removeItem("userToken");
     navigate("/")
     }
+
   return (
       <div className='container-fluid p-0'>
       <div className="row">
-
-        {/* Sidebar Starts */}
-       <div className="bg-dark p-0 min-vh-100 col-auto col-md-2 d-flex  flex-column">
         
+       <div className="bg-dark p-0 min-vh-100  d-flex  flex-column">
         <div className="bg-secondary">
         <br></br>
         <ul class="nav flex-column">

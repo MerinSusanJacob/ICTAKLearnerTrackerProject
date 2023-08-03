@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 import '../App.css'
 
 const Main = (props) => {
+    
   return (
     <div className="container-fluid">
       <div className="row">
