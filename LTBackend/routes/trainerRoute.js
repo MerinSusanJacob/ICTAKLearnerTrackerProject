@@ -10,7 +10,7 @@ const auth = require('../authz.js/auth');
 
 //to get data
 
-router.get('/getldata/:token', auth, async (req, res) => {
+router.get('/getldata/:token',  async (req, res) => {
     const data = await learnerData.find();
     try {
         jwt.verify(req.params.token, "ict",
@@ -28,7 +28,7 @@ router.get('/getldata/:token', auth, async (req, res) => {
 })
 
 //to post data
-router.post('/postldata', auth, (req, res) => {
+router.post('/postldata',auth,(req, res) => {
     try {
         const item = req.body;
         const newdata = new learnerData(item);
