@@ -116,7 +116,7 @@ const AdminHome = () => {
                 {[...Array(totalPages).keys()].map((pageNumber) => (
                   <Pagination.Item
                     key={pageNumber}
-                    active={pageNumber + 1 === currentPage}
+                    active={pageNumber + 1 === currentPage} 
                     onClick={() => handlePagination(pageNumber + 1)}
                   >
                     {pageNumber + 1}
