@@ -93,7 +93,7 @@ const Sidebar = () => {
                   <span className="ms-2 d-none d-sm-inline">Logout </span>
                 </a>
               </li>
-            </ul>
+            </ul> 
           </div>
 
         </div>

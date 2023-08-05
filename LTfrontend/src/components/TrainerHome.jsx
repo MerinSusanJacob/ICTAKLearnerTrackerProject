@@ -119,7 +119,7 @@ const Trainerhead = () => {
                   <td>
                     <Button variant="success" onClick={() => updateLearner(value)}>
                       <ion-icon name="create"></ion-icon>
-                    </Button>
+                    </Button> 
                   </td>
                   <td>
                     <Button variant="danger" onClick={() => deleteLearner(value._id)}>
