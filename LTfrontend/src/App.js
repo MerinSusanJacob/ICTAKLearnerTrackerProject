@@ -8,7 +8,7 @@ import PlacementHome from './components/PlacementHome'
 import Home from './components/Home';
 import Login from './components/Login';
 import Main from './components/Main';
-import Admin from './components/Admin';
+
 import AdminHome from './components/AdminHome';
 import AdminAdd from './components/AdminAdd';
 import Sidebar from './components/Sidebar';
@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} ></Route>
         <Route path="/home" element={<Main child={<Home />} />} />
-        <Route path="/admin" element={<Main child={<Admin />} />} />
+        
         <Route path="/thome" element={<Main child={<TrainerHome />} />} />
         <Route path="/phome" element={<Main child={<PlacementHome />} />} />
         <Route path="/tadd" element={<Main child={<TrainerAdd method="post" data={
@@ -35,7 +35,8 @@ function App() {
         } />} />} />
         <Route path="/ahome"  element={<Main child={<AdminHome/>}/>}/>
         <Route path="/aadd" element={<Main child={<AdminAdd method="post" data={
-          {name:"",
+          {
+            name:"",
           email:"",
           username:"",
           password:"",
