@@ -19,16 +19,7 @@ const Sidebar = () => {
 
       <div className="row">
         {/* Sidebar Starts */}
-       <div className=".main-wrap bg-dark col-auto col-md-2 p-0 min-vh-100 d-flex justify-content-between flex-column position-fixed" style={{zIndex: '1'}}>
-        <div>
-        <br></br>
-        <a className='text-decoration-none text-white  mt-5 mb-2'>
-            <span className="fs-4">ICTAK-LearnerTracker</span>
-        </a>
-        <hr className='text-secondary'/>
-        <br></br>
-        
-        <ul class="nav nav-pills flex-column">
+        <div className="bg-dark col-auto col-md-2 p-0 min-vh-100 d-flex  flex-column position-fixed" style={{ zIndex: '1' }}>
 
           <div className="bg-secondary">
             <br></br>
