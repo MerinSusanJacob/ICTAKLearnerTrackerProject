@@ -62,12 +62,11 @@ const TrainerAdd = (props) => {
     }
     return (
         <div>
-            <div className="container w-50 mt-5 pt-5 bg-secondary-subtle rounded">
+            <div className="container w-50 mt-5 pt-5  bg-secondary-subtle rounded">
                 <h3>Learner's form</h3>
-                <br></br>
                 <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                        <div className="row g-4">
+                        <div className="row g-2">
                             {/* LearnerId */}
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">

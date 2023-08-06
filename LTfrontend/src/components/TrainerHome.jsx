@@ -92,9 +92,9 @@ const Trainerhead = () => {
       ) :    
       data && data.length > 0 ? ( // Check if data is not undefined and has some elements
         <>
-          <Table responsive striped bordered hover>
+          <Table responsive bordered hover>
             <thead>
-              <tr>
+              <tr class="table-success">
                 <th>Learner Id</th>
                 <th>Name</th>
                 <th>Course</th>

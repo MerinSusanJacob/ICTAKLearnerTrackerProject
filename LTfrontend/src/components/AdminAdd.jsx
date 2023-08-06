@@ -60,7 +60,7 @@ const AdminAdd = (props) => {
     }
     return (
         <div>
-            <div className="container w-75 mt-5 pt-5 bg-secondary-subtle rounded">
+            <div className="container w-50 mt-5 pt-5 bg-secondary-subtle rounded">
                 <h3>Add Users</h3>
                 <br></br>
                 <div className="row">

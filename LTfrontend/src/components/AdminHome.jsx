@@ -89,14 +89,16 @@ const AdminHome = () => {
         ) :
         data && data.length > 0 ? ( // Check if data is not undefined and has some elements
           <>
-            <Table responsive striped bordered hover>
+            <Table responsive  bordered hover>
               <thead>
-                <tr>
+                <tr class="table-success">
                   <th>Name</th>
                   <th>Email ID</th>
                   <th>Username</th>
                   <th>Password</th>
                   <th>Role</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>

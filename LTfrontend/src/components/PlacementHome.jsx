@@ -43,19 +43,7 @@ const PlacementHome = () => {
     setSingleval(val);
   }
 
-  // const deleteLearner=(id)=>{
-  //   axios.delete(`http://localhost:5000/api/delldata/${id}`)
-  //   .then((response)=>{
-  //       if(response.data.message==="Deleted successfully"){
-  //         alert(response.data.message); 
-  //               fetchDatafromAPI();
-  //           }
-  //           else{
-  //               alert(response.data.message);
-  //           }
-  //   })
-  //   .catch((err)=>{console.log(err)})
-  // }
+ 
 
   useEffect(() => {
     fetchDatafromAPI(currentPage)
@@ -84,7 +72,7 @@ const PlacementHome = () => {
 
   let finalJSX =
 
-    <div className="container w-75 mt-4 pt-4">
+    <div className="container w-75 mt-5 pt-5">
 
       {/* <a href="/tadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a> */}
       {loading ?
@@ -92,9 +80,9 @@ const PlacementHome = () => {
         ) :
         data && data.length > 0 ? ( // Check if data is not undefined and has some elements
           <>
-            <Table responsive striped bordered hover>
+            <Table responsive bordered hover>
               <thead>
-                <tr>
+                <tr class="table-success">
                   <th>Learner Id</th>
                   <th>Name</th>
                   <th>Course</th>
@@ -102,6 +90,7 @@ const PlacementHome = () => {
                   <th>Batch</th>
                   <th>Course Status</th>
                   <th>Placement Status</th>
+                  <th>Update</th>
                 </tr>
               </thead>
               <tbody>

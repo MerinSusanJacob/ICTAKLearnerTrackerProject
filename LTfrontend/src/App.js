@@ -2,13 +2,10 @@ import './App.css';
 import {Route, Routes } from 'react-router-dom';
 import TrainerHome from './components/TrainerHome';
 import TrainerAdd from './components/TrainerAdd';
-
 import PlacementHome from './components/PlacementHome'
-
 import Home from './components/Home';
 import Login from './components/Login';
 import Main from './components/Main';
-
 import AdminHome from './components/AdminHome';
 import AdminAdd from './components/AdminAdd';
 import Sidebar from './components/Sidebar';
