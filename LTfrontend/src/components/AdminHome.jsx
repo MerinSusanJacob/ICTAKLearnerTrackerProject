@@ -9,6 +9,9 @@ const AdminHome = () => {
   const [data, setData] = useState([]);
   const [updation, setUpdation] = useState(false);
   const [singleval, setSingleval] = useState([]);
+  const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
+  const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+  
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -18,7 +21,7 @@ const AdminHome = () => {
 
   const fetchDatafromAPI = (pageNumber) => {
     return axios
-      .get("http://localhost:5000/api/getudata")
+      .get("http://localhost:5000/api/getudata/" +userToken,+userRole)
       .then((response) => {
         console.log("data from get", response.data);
         const startIndex = (pageNumber - 1) * pageSize;
@@ -116,7 +119,7 @@ const AdminHome = () => {
                 {[...Array(totalPages).keys()].map((pageNumber) => (
                   <Pagination.Item
                     key={pageNumber}
-                    active={pageNumber + 1 === currentPage} 
+                    active={pageNumber + 1 === currentPage}
                     onClick={() => handlePagination(pageNumber + 1)}
                   >
                     {pageNumber + 1}
