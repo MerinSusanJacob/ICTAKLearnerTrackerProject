@@ -9,6 +9,7 @@ import Main from './components/Main';
 import AdminHome from './components/AdminHome';
 import AdminAdd from './components/AdminAdd';
 import Sidebar from './components/Sidebar';
+import Upload from './components/Upload';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           role:""
           }
           }/>}/>} />
+          <Route path="/upload" element={<Main child={<Upload />} />} />
         <Route path="/sidebar" element={<Sidebar/>}/>
       </Routes>
 

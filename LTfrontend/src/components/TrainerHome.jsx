@@ -87,6 +87,12 @@ const Trainerhead = () => {
           <ion-icon name="person-add-outline" size="large"></ion-icon>
         </Button>
       </Link>
+      &nbsp;&nbsp;&nbsp;
+      <Link to="/upload">
+        <Button variant="success" className="mb-3">
+          <ion-icon name="cloud-upload" size="large"></ion-icon>
+        </Button>
+      </Link>
       { loading ?
       (<p>Loading data..</p>
       ) :    

@@ -6,6 +6,8 @@ app.use(morgan('dev'));
 require('dotenv').config();
 app.use(cors());
 
+app.use('/upload', express.static('./uploads'));
+
 require('./db/mongodb');
 
 const userRoute = require('./routes/userRoute')

@@ -84,6 +84,7 @@ const AdminHome = () => {
           <ion-icon name="person-add-outline" size="large"></ion-icon>
         </Button>
       </Link>
+      
       {loading ?
         (<p>Loading data..</p>
         ) :
