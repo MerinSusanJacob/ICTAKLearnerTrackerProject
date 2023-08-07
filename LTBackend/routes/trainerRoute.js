@@ -71,4 +71,8 @@ router.delete('/delldata/:id', auth, (req, res) => {
     }
 })
 
+//to upload data
+const {csvUpload} = require("../controller/learnerController");
+router.route("/learner/upload").post(csvUpload);
+
 module.exports = router;
