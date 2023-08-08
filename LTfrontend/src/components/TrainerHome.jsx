@@ -17,20 +17,25 @@ const Trainerhead = () => {
 
 
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
-  const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
+  const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
 
   const pageSize =5;//Number of item per page
 
   const fetchDatafromAPI = (pageNumber) => {
     return axios
-    .get(`http://localhost:5000/api/getldata/${userToken}`)
+    .get(`http://localhost:5000/api/getldata/${userToken}/${userRole}`)
     .then((response) => {
-      console.log('data from get', response.data);
-      const startIndex = (pageNumber - 1) * pageSize;
-      const endIndex = startIndex + pageSize;
-      const paginatedData = response.data.slice(startIndex, endIndex);
-      setData(paginatedData);
-      setTotalPages(Math.ceil(response.data.length / pageSize));
+      //console.log("Data from get"+response.data);
+      if (response.data.message==="success") {
+        const resData=response.data.data; 
+        const startIndex = (pageNumber - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const paginatedData = resData.slice(startIndex, endIndex);
+        setData(paginatedData);
+        setTotalPages(Math.ceil(resData.length / pageSize));
+      } else {
+        alert(response.data.message);
+      }
       })
       .catch((err) => console.log(err));
   };

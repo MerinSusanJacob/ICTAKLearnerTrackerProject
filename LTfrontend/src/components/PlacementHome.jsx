@@ -26,14 +26,20 @@ const PlacementHome = () => {
 
   const fetchDatafromAPI = (pageNumber) => {
     return axios
-      .get("http://localhost:5000/api/getldata/" + userToken)
+      .get(`http://localhost:5000/api/getpdata/${userToken}/${userRole}`)
       .then((response) => {
-        console.log("data from get", response.data);
-        const startIndex = (pageNumber - 1) * pageSize;
-        const endIndex = startIndex + pageSize;
-        const paginatedData = response.data.slice(startIndex, endIndex);
-        setData(paginatedData);
-        setTotalPages(Math.ceil(response.data.length / pageSize));
+        if (response.data.message==="success") {
+          console.log("data from get", response.data);
+          const resData=response.data.data; 
+          const startIndex = (pageNumber - 1) * pageSize;
+          const endIndex = startIndex + pageSize;
+          const paginatedData = resData.slice(startIndex, endIndex);
+          setData(paginatedData);
+          setTotalPages(Math.ceil(resData.length / pageSize));
+        } else {
+          alert(response.data.message);
+          //console.log(response.data.message);
+        } 
       })
       .catch(err => console.log(err));
   };

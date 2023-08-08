@@ -131,29 +131,6 @@ const Sidebar = () => {
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
 
-          {/* {userRole === 'Admin' && (
-          <>
-            <NavLink exact to="/ahome" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="users">Users</CDBSidebarMenuItem>
-            </NavLink>
-            </>
-          )}
-
-          {userRole !== 'Placement Officer' && (
-          <>
-            <NavLink exact to="/thome" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="book">Learners</CDBSidebarMenuItem>
-            </NavLink>
-            </>
-          )}
-
-          {userRole !== 'Training Head' && (
-            <>
-            <NavLink exact to="/phome" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="briefcase">Placement</CDBSidebarMenuItem>
-            </NavLink>
-            </>
-          )} */}
 
 
     <NavLink exact to="/ahome" activeClassName="activeClicked">
@@ -185,16 +162,6 @@ const Sidebar = () => {
 
           </CDBSidebarMenu>
         </CDBSidebarContent>
-
-        {/* <CDBSidebarFooter style={{ textAlign: 'center' }}>
-          <div
-            style={{
-                padding: '20px 5px',
-              }}
-          >
-            ©ICTAK
-          </div>
-        </CDBSidebarFooter> */}
       </CDBSidebar>
     </div>
   )

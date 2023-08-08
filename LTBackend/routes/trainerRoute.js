@@ -10,13 +10,13 @@ const auth = require('../authz.js/auth');
 
 //to get data
 
-router.get('/getldata/:token',  async (req, res) => {
+router.get('/getldata/:token/:role',auth, async (req, res) => {
     const data = await learnerData.find();
     try {
         jwt.verify(req.params.token, "ict",
             (error, decoded) => {
                 if (decoded && decoded.email) {
-                    res.json(data);
+                    res.json({"message":"success",data});
                 } else {
                     res.json({ message: "Unauthorised User" });
                 }
@@ -61,7 +61,7 @@ router.put('/putldata/:id', auth, async (req, res) => {
 })
 
 //to delete data
-router.delete('/delldata/:id', auth, (req, res) => {
+router.delete('/delldata/:id',auth, (req, res) => {
     try {
         const ind = req.params.id;
         learnerData.findByIdAndDelete(ind).exec();
