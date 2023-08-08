@@ -18,7 +18,7 @@ router.get('/getpdata/:token/:role', authpl, async (req, res) => {
 })
 
 //to post data
-router.post('/postpdata', authpl,(req, res) => {
+router.post('/postpdata', (req, res) => {
     try {
         const item = req.body;
         const newdata = new learnerData(item);
@@ -30,7 +30,7 @@ router.post('/postpdata', authpl,(req, res) => {
 })
 
 //to update data
-router.put('/putpdata/:id', authpl, async (req, res) => {
+router.put('/putpdata/:id', async (req, res) => {
     try {
         const item = req.body;
         const index = req.params.id;

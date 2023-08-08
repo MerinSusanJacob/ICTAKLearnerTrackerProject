@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 // import { useNavigate } from "react-router-dom"
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const PlacementAdd = (props) => {
     console.log("props data", props.data);
@@ -15,31 +16,16 @@ const PlacementAdd = (props) => {
     }
 
     const submitHandler = () => {
-        //console.log("button clicked",inputs);
-
-        // if(props.method==="post"){
-        //     axios.post(`http://localhost:5000/api/postldata`,inputs)
-        //     .then((response)=>{
-        //         if(response.data.message==="Posted successfully"){
-        //             console.log("response post",response);
-        //             alert(response.data.message); 
-        //             navigate('/thome');
-        //         }
-        //         else{
-        //             alert(response.data.message);
-        //         }
-        //     })
-        //     .catch((err)=>{console.log(err)})   
-        // }
+        
         if (props.method === "put") {
             axios.put(`http://localhost:5000/api/putpdata/${inputs._id}`, inputs)
                 .then((response) => {
                     if (response.data.message === "Updated successfully") {
-                        alert(response.data.message);
+                        Swal.fire('',response.data.message,'success');
                         window.location.reload(false);
                     }
                     else {
-                        alert(response.data.message);
+                        Swal.fire('Sorry',response.data.message,'');
                     }
                 })
                 .catch((err) => { console.log(err) })

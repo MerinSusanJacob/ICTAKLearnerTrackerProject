@@ -3,8 +3,7 @@ import axios from 'axios'
 import { Table, Button, Pagination } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PlacementAdd from './PlacementAdd';
-
-
+import Swal from 'sweetalert2'
 
 
 const PlacementHome = () => {
@@ -37,7 +36,7 @@ const PlacementHome = () => {
           setData(paginatedData);
           setTotalPages(Math.ceil(resData.length / pageSize));
         } else {
-          alert(response.data.message);
+          Swal.fire('Sorry',response.data.message,'');
           //console.log(response.data.message);
         } 
       })
@@ -48,8 +47,6 @@ const PlacementHome = () => {
     setUpdation(true);
     setSingleval(val);
   }
-
- 
 
   useEffect(() => {
     fetchDatafromAPI(currentPage)

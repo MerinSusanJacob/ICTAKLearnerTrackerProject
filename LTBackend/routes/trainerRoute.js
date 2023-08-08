@@ -28,7 +28,7 @@ router.get('/getldata/:token/:role',auth, async (req, res) => {
 })
 
 //to post data
-router.post('/postldata',auth,(req, res) => {
+router.post('/postldata',(req, res) => {
     try {
         const item = req.body;
         const newdata = new learnerData(item);
@@ -49,7 +49,7 @@ router.post('/postldata',auth,(req, res) => {
 })
 
 //to update data
-router.put('/putldata/:id', auth, async (req, res) => {
+router.put('/putldata/:id',  async (req, res) => {
     try {
         const item = req.body;
         const index = req.params.id;
@@ -61,7 +61,7 @@ router.put('/putldata/:id', auth, async (req, res) => {
 })
 
 //to delete data
-router.delete('/delldata/:id',auth, (req, res) => {
+router.delete('/delldata/:id', (req, res) => {
     try {
         const ind = req.params.id;
         learnerData.findByIdAndDelete(ind).exec();

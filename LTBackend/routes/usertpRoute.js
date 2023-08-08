@@ -29,7 +29,7 @@ router.get('/getudata/:token/:role', adm, async (req,res)=>{
 })
 
 //to post user data
-router.post('/postudata',adm,(req,res)=>{
+router.post('/postudata',(req,res)=>{
     try {
         const item=req.body;
         const newdata=new userData(item);
@@ -50,7 +50,7 @@ router.post('/postudata',adm,(req,res)=>{
 })
 
 //to update user data
-router.put('/putudata/:id',adm, async (req,res)=>{
+router.put('/putudata/:id', async (req,res)=>{
     try {
         const item=req.body;
         const index=req.params.id;
@@ -62,7 +62,7 @@ router.put('/putudata/:id',adm, async (req,res)=>{
 })
 
 //to delete user data
-router.delete('/deludata/:id',adm, (req,res)=>{
+router.delete('/deludata/:id',(req,res)=>{
     try {
         const ind=req.params.id;
         userData.findByIdAndDelete(ind).exec();

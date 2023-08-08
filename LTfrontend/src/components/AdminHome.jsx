@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Table, Button, Pagination } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AdminAdd from './AdminAdd'
-
+import Swal from 'sweetalert2'
 
 const AdminHome = () => {
   const [data, setData] = useState([]);
@@ -31,7 +31,7 @@ const AdminHome = () => {
           setData(paginatedData);
           setTotalPages(Math.ceil(resData.length / pageSize));
         } else {
-          alert(response.data.message);
+          Swal.fire('Sorry',response.data.message,'');
           //console.log(response.data.message)
         }
       })
@@ -47,11 +47,12 @@ const AdminHome = () => {
     axios.delete(`http://localhost:5000/api/deludata/${id}`)
       .then((response) => {
         if (response.data.message === "Deleted successfully") {
-          alert(response.data.message);
-          fetchDatafromAPI(currentPage);
+          //fetchDatafromAPI(currentPage);
+          window.location.reload(true);
+          Swal.fire('',response.data.message,'success');
         }
         else {
-          alert(response.data.message);
+          Swal.fire('Sorry',response.data.message,'');
         }
       })
       .catch((err) => { console.log(err) })

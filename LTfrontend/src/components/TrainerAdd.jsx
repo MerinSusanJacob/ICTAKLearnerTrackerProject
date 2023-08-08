@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const TrainerAdd = (props) => {
     console.log("props data", props.data);
@@ -37,11 +38,11 @@ const TrainerAdd = (props) => {
                 .then((response) => {
                     if (response.data.message === "Posted successfully") {
                         console.log("response post", response);
-                        alert(response.data.message);
+                        Swal.fire('',response.data.message,'success');
                         navigate('/thome');
                     }
                     else {
-                        alert(response.data.message);
+                        Swal.fire('Sorry',response.data.message,'');
                     }
                 })
                 .catch((err) => { console.log(err) })
@@ -50,11 +51,11 @@ const TrainerAdd = (props) => {
             axios.put(`http://localhost:5000/api/putldata/${inputs._id}`, inputs)
                 .then((response) => {
                     if (response.data.message === "Updated successfully") {
-                        alert(response.data.message);
+                        Swal.fire('',response.data.message,'success');
                         window.location.reload(false);
                     }
                     else {
-                        alert(response.data.message);
+                        Swal.fire('Sorry',response.data.message,'');
                     }
                 })
                 .catch((err) => { console.log(err) })
