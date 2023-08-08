@@ -27,18 +27,19 @@ const PlacementHome = () => {
     return axios
       .get(`http://localhost:5000/api/getpdata/${userToken}/${userRole}`)
       .then((response) => {
-        if (response.data.message==="success") {
+        console.log("Data from get" + response.data);
+        if (response.data.message === "success") {
           console.log("data from get", response.data);
-          const resData=response.data.data; 
+          const resData = response.data.data;
           const startIndex = (pageNumber - 1) * pageSize;
           const endIndex = startIndex + pageSize;
           const paginatedData = resData.slice(startIndex, endIndex);
           setData(paginatedData);
           setTotalPages(Math.ceil(resData.length / pageSize));
         } else {
-          Swal.fire('Sorry',response.data.message,'');
+          Swal.fire('Sorry', response.data.message, '');
           //console.log(response.data.message);
-        } 
+        }
       })
       .catch(err => console.log(err));
   };
@@ -63,7 +64,7 @@ const PlacementHome = () => {
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) { 
+    if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };

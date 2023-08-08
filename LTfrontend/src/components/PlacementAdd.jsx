@@ -16,16 +16,16 @@ const PlacementAdd = (props) => {
     }
 
     const submitHandler = () => {
-        
+
         if (props.method === "put") {
             axios.put(`http://localhost:5000/api/putpdata/${inputs._id}`, inputs)
                 .then((response) => {
                     if (response.data.message === "Updated successfully") {
-                        Swal.fire('',response.data.message,'success');
+                        Swal.fire('', response.data.message, 'success');
                         window.location.reload(false);
                     }
                     else {
-                        Swal.fire('Sorry',response.data.message,'');
+                        Swal.fire('Sorry', response.data.message, '');
                     }
                 })
                 .catch((err) => { console.log(err) })

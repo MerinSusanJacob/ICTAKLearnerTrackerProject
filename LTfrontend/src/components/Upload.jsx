@@ -11,7 +11,17 @@ const Upload = () => {
   const [parsedData, setParsedData] = useState([]);
   const [tableRows, setTableRows] = useState([]);
   const [values, setValues] = useState([]);
-//   const [jsonData, setJsonData] = useState([]);
+  //   const [jsonData, setJsonData] = useState([]);
+  const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
+  const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${userToken}`, // Include your authentication token here
+      'X-User-Role': userRole // Pass the user role here in custom header
+    }
+  };
 
   const changeHandler = (event) => {
     Papa.parse(event.target.files[0], {
@@ -29,32 +39,55 @@ const Upload = () => {
 
   const sendDataToAPI = () => {
     if (parsedData.length > 0) {
-    
-        axios.post('http://localhost:5000/api/learner/upload', parsedData) 
-          .then((response) => {
-           
-            if (response.data.status === 'OK') {
-              Swal.fire({
-                title: 'Csv Added Successfully..!',
-                showDenyButton: false,
-                confirmButtonText: 'Return to home',
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  Swal.fire('Saved!', '', 'success');
-                  navigate('/thome');
-                }
-              });
-            }
-          })
-          .catch(function (error) {
-            console.log(error.toJSON());
-          });
+
+      axios.post('http://localhost:5000/api/learner/upload', parsedData, config)
+        .then((response) => {
+          console.log(response.data)
+          if (response.data.status === 'OK') {
+            Swal.fire({
+              title: 'Csv Added Successfully..!',
+              showDenyButton: false,
+              confirmButtonText: 'Return to home',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success');
+                navigate('/thome');
+              }
+            });
+          }
+          else if (response.data.status === 'Forbidden') {
+            Swal.fire('Sorry', response.data.message, '');
+            ;
+          }
+        })
+        .catch(function (error) {
+          console.log(error.toJSON());
+        });
 
     }
     else {
       alert('No data found!');
     }
   };
+
+  if (userRole !== 'Admin' && userRole !== 'Training Head') {
+    return (
+      <div className="container" align="center" style={{ marginTop: '120px' }}>
+        <Segment style={{ border: 'none' }}>
+          <p>You are not authorized to access this page.</p>
+          <Link to="/thome">
+            <Button
+              size="mini"
+              style={{ backgroundColor: '#FF0000', color: '#ffffff', fontSize: 15, borderColor: '#FFC300' }}
+            >
+              Go to Home
+            </Button>
+          </Link>
+        </Segment>
+      </div>
+    );
+  }
+
 
   return (
     <div>
@@ -69,7 +102,7 @@ const Upload = () => {
                 name="file"
                 onChange={changeHandler}
                 accept=".csv"
-             />
+              />
             </Form.Field>
             <br></br>
             <Table celled>
@@ -94,7 +127,7 @@ const Upload = () => {
                 })}
               </Table.Body>
             </Table>
-            
+
             <Button size='mini' color='grey' type='submit' onClick={sendDataToAPI} style={{ backgroundColor: "#FFC300", color: "#ffffff", fontSize: 15, borderColor: "#FF0000" }} >Submit</Button>
             &nbsp;&nbsp;&nbsp;
             <Link to='/thome' >
