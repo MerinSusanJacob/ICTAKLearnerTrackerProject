@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
+import { Button, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -10,6 +12,7 @@ const TrainerAdd = (props) => {
 
     const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
     const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
+    const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
     const inputHandler = (e) => {
         const { name, value } = e.target;
         setInputs({
@@ -21,6 +24,7 @@ const TrainerAdd = (props) => {
         let data = {
             userId: userID,
             token: userToken,
+            role: userRole,
             learnerid: inputs.learnerid,
             name: inputs.name,
             course: inputs.course,
@@ -38,29 +42,48 @@ const TrainerAdd = (props) => {
                 .then((response) => {
                     if (response.data.message === "Posted successfully") {
                         console.log("response post", response);
-                        Swal.fire('',response.data.message,'success');
+                        Swal.fire('', response.data.message, 'success');
                         navigate('/thome');
                     }
                     else {
-                        Swal.fire('Sorry',response.data.message,'');
+                        Swal.fire('Sorry', response.data.message, '');
                     }
                 })
                 .catch((err) => { console.log(err) })
         }
         if (props.method === "put") {
-            axios.put(`http://localhost:5000/api/putldata/${inputs._id}`, inputs)
+            axios.put(`http://localhost:5000/api/putldata/${inputs._id}`, data)
                 .then((response) => {
                     if (response.data.message === "Updated successfully") {
-                        Swal.fire('',response.data.message,'success');
+                        Swal.fire('', response.data.message, 'success');
                         window.location.reload(false);
                     }
                     else {
-                        Swal.fire('Sorry',response.data.message,'');
+                        Swal.fire('Sorry', response.data.message, '');
                     }
                 })
                 .catch((err) => { console.log(err) })
         }
     }
+
+    if (userRole !== 'Admin' && userRole !== 'Training Head') {
+        return (
+            <div className="container" align="center" style={{ marginTop: '120px' }}>
+                <Segment style={{ border: 'none' }}>
+                    <p>You are not authorized to access this page.</p>
+                    <Link to="/thome">
+                        <Button
+                            size="mini"
+                            style={{ backgroundColor: '#FF0000', color: '#ffffff', fontSize: 15, borderColor: '#FFC300' }}
+                        >
+                            Go to Home
+                        </Button>
+                    </Link>
+                </Segment>
+            </div>
+        );
+    }
+
     return (
         <div>
             <div className="container w-50 mt-5 pt-5  bg-secondary-subtle rounded">

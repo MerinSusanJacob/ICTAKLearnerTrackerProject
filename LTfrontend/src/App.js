@@ -1,9 +1,8 @@
 import './App.css';
-import {Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import TrainerHome from './components/TrainerHome';
 import TrainerAdd from './components/TrainerAdd';
 import PlacementHome from './components/PlacementHome'
-import Home from './components/Home';
 import Login from './components/Login';
 import Main from './components/Main';
 import AdminHome from './components/AdminHome';
@@ -17,8 +16,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} ></Route>
-        <Route path="/home" element={<Main child={<Home />} />} />
-        
+
+
         <Route path="/thome" element={<Main child={<TrainerHome />} />} />
         <Route path="/phome" element={<Main child={<PlacementHome />} />} />
         <Route path="/tadd" element={<Main child={<TrainerAdd method="post" data={
@@ -31,18 +30,18 @@ function App() {
             cstatus: ""
           }
         } />} />} />
-        <Route path="/ahome"  element={<Main child={<AdminHome/>}/>}/>
+        <Route path="/ahome" element={<Main child={<AdminHome />} />} />
         <Route path="/aadd" element={<Main child={<AdminAdd method="post" data={
           {
-            name:"",
-          email:"",
-          username:"",
-          password:"",
-          role:""
+            name: "",
+            email: "",
+            username: "",
+            password: "",
+            role: ""
           }
-          }/>}/>} />
-          <Route path="/upload" element={<Main child={<Upload />} />} />
-        <Route path="/sidebar" element={<Sidebar/>}/>
+        } />} />} />
+        <Route path="/upload" element={<Main child={<Upload />} />} />
+        <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
 
 

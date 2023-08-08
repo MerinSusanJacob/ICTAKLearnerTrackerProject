@@ -20,16 +20,16 @@ const Main = (props) => {
 
     <div className="main-container">
       <div> {/* Sidebar */}
-        <Sidebar/>
+        <Sidebar />
       </div>
       <div className="main-content justify-content-between">
         <header> {/* Header */}
-          <Header/>
+          <Header />
         </header>
         <main> {/* Main Content */}
           {props.child}
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   )

@@ -11,7 +11,7 @@ const AdminHome = () => {
   const [singleval, setSingleval] = useState([]);
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
-  
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -23,15 +23,15 @@ const AdminHome = () => {
     return axios
       .get(`http://localhost:5000/api/getudata/${userToken}/${userRole}`)
       .then((response) => {
-        if (response.data.message==="success") {
-          const resData=response.data.data;        
+        if (response.data.message === "success") {
+          const resData = response.data.data;
           const startIndex = (pageNumber - 1) * pageSize;
           const endIndex = startIndex + pageSize;
           const paginatedData = resData.slice(startIndex, endIndex);
           setData(paginatedData);
           setTotalPages(Math.ceil(resData.length / pageSize));
         } else {
-          Swal.fire('Sorry',response.data.message,'');
+          Swal.fire('Sorry', response.data.message, '');
           //console.log(response.data.message)
         }
       })
@@ -49,10 +49,10 @@ const AdminHome = () => {
         if (response.data.message === "Deleted successfully") {
           //fetchDatafromAPI(currentPage);
           window.location.reload(true);
-          Swal.fire('',response.data.message,'success');
+          Swal.fire('', response.data.message, 'success');
         }
         else {
-          Swal.fire('Sorry',response.data.message,'');
+          Swal.fire('Sorry', response.data.message, '');
         }
       })
       .catch((err) => { console.log(err) })
@@ -90,13 +90,13 @@ const AdminHome = () => {
           <ion-icon name="person-add-outline" size="large"></ion-icon>
         </Button>
       </Link>
-      
+
       {loading ?
         (<p>Loading data..</p>
         ) :
         data && data.length > 0 ? ( // Check if data is not undefined and has some elements
           <>
-            <Table responsive  bordered hover>
+            <Table responsive bordered hover>
               <thead>
                 <tr class="table-success">
                   <th>Name</th>
