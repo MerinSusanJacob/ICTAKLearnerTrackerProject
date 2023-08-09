@@ -20,7 +20,7 @@ const Sidebar = () => {
         {/* Header of the Sidebar */}
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="#" className="text-decoration-none" style={{ color: 'inherit' }}>
-            <img src={ictlogo} alt="logo" style={{ height: '5vmin' }}/> ICTAK
+            <img src={ictlogo} alt="logo" style={{ height: '3vmin' }}/> ICTAK
           </a>
         </CDBSidebarHeader>
 
