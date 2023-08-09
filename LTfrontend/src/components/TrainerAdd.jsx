@@ -10,17 +10,68 @@ const TrainerAdd = (props) => {
     const [inputs, setInputs] = useState(props.data);
     const navigate = useNavigate();
 
+    const[displayLid,setDisplayLid]=useState(false);
+    const[displayNamewarn,setDisplayNamewarn]=useState(false);
+    const[displayCwarn,setDisplayCwarn]=useState(false);
+    const[displayProwarn,setDisplayProwarn]=useState(false);
+    const[displayBwarn,setDisplayBwarn]=useState(false);
+    const[displayCswarn,setDisplayCswarn]=useState(false);
+
     const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
     const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
     const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+
     const inputHandler = (e) => {
+        setDisplayLid(false);
+        setDisplayNamewarn(false);
+        setDisplayCwarn(false);
+        setDisplayProwarn(false);
+        setDisplayBwarn(false);
+        setDisplayCswarn(false);
+
         const { name, value } = e.target;
         setInputs({
             ...inputs, [name]: value
         });
     }
 
+    const validateForm=()=>{
+        let regexLid=/^[a-zA-Z0-9]+$/
+        let regexName=/^[a-zA-Z\s]+$/
+        if(!regexLid.test(inputs.learnerid)){
+            setDisplayLid(true);
+            return false;
+        }
+        else if(!regexName.test(inputs.name)){
+            setDisplayNamewarn(true);
+            return false;
+        }
+        else if(inputs.course.length==0){
+            setDisplayCwarn(true);
+            return false;
+        }
+        else if(inputs.project.length==0){
+            setDisplayProwarn(true);
+            return false;
+        } 
+        else if(inputs.batch.length==0){
+            setDisplayBwarn(true);
+            return false;
+        }
+        else if(inputs.cstatus.length==0){
+            setDisplayCswarn(true);
+            return false;
+        }
+        else{
+            return true;
+        }
+      };
+
     const submitHandler = () => {
+        if (!validateForm()) {
+            return; 
+          }
+
         let data = {
             userId: userID,
             token: userToken,
@@ -84,7 +135,7 @@ const TrainerAdd = (props) => {
         );
     }
 
-    return (
+return (
         <div>
             <div className="container w-50 mt-5 pt-5  bg-secondary-subtle rounded">
                 <h3>Learner's form</h3>
@@ -95,7 +146,7 @@ const TrainerAdd = (props) => {
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">
                                     <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-                                        <label htmlFor="learnerid" className="form-label">Learner Id:</label>
+                                        <label htmlFor="learnerid" className="form-label">Learner Id :</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
                                         <input type="text"
@@ -105,6 +156,7 @@ const TrainerAdd = (props) => {
                                             value={inputs.learnerid}
                                             onChange={inputHandler}
                                         />
+                                        {displayLid?<p className="fw-light fst-italic text-start text-danger">Must contain letters and Numbers only</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +164,7 @@ const TrainerAdd = (props) => {
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">
                                     <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-                                        <label htmlFor="name" className="form-label">Name:</label>
+                                        <label htmlFor="name" className="form-label">Name :</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
                                         <input type="text"
@@ -122,6 +174,7 @@ const TrainerAdd = (props) => {
                                             value={inputs.name}
                                             onChange={inputHandler}
                                         />
+                                        {displayNamewarn?<p className="fw-light fst-italic text-start text-danger">Must contain letters only</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -132,12 +185,12 @@ const TrainerAdd = (props) => {
                                         <label htmlFor="course" className="form-label">Course :</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
-                                        <select className="form-select"
+                                        <select className="form-select required"
                                             aria-label="Default select example"
                                             name="course"
                                             value={inputs.course}
                                             onChange={inputHandler}>
-                                            <option defaultValue>-Select-</option>
+                                            <option defaultValue></option>
                                             <option value="FSD">FSD</option>
                                             <option value="DSA">DSA</option>
                                             <option value="ML-AI">ML-AI</option>
@@ -145,6 +198,7 @@ const TrainerAdd = (props) => {
                                             <option value="ST">ST</option>
                                             <option value="CSA">CSA</option>
                                         </select>
+                                        {displayCwarn?<p className="fw-light fst-italic text-start text-danger">Please select a course for the learner</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -155,18 +209,19 @@ const TrainerAdd = (props) => {
                                         <label htmlFor="project" className="form-label">Project :</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
-                                        <select className="form-select"
+                                        <select className="form-select required"
                                             aria-label="Default select example"
                                             name="project"
                                             value={inputs.project}
                                             onChange={inputHandler}>
-                                            <option defaultValue>-Select-</option>
+                                            <option defaultValue></option>
                                             <option value="ICTAK">ICTAK</option>
                                             <option value="KKEM">KKEM</option>
                                             <option value="NORKA">NORKA</option>
                                             <option value="ABCD">ABCD</option>
                                             <option value="KDISC">KDISC</option>
                                         </select>
+                                        {displayProwarn?<p className="fw-light fst-italic text-start text-danger">Please select a project for the learner</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -177,12 +232,12 @@ const TrainerAdd = (props) => {
                                         <label htmlFor="batch" className="form-label">Batch :</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
-                                        <select className="form-select"
+                                        <select className="form-select required"
                                             aria-label="Default select example"
                                             name="batch"
                                             value={inputs.batch}
                                             onChange={inputHandler}>
-                                            <option selected>-Select-</option>
+                                            <option selected></option>
                                             <option value="May_22">May_22</option>
                                             <option value="Jun_22">Jun_22</option>
                                             <option value="Jul_22">Jul_22</option>
@@ -190,6 +245,7 @@ const TrainerAdd = (props) => {
                                             <option value="Dec_22">Dec_22</option>
                                             <option value="Mar_23">Mar_23</option>
                                         </select>
+                                        {displayBwarn?<p className="fw-light fst-italic text-start text-danger">Please select a batch for the learner</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -198,18 +254,19 @@ const TrainerAdd = (props) => {
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">
                                     <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-                                        <label htmlFor="course" className="form-label">Course Status:</label>
+                                        <label htmlFor="course" className="form-label">Course Status :</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
-                                        <select className="form-select"
+                                        <select className="form-select required"
                                             aria-label="Default select example"
                                             name="cstatus"
                                             value={inputs.cstatus}
                                             onChange={inputHandler}>
-                                            <option defaultValue>-Select-</option>
+                                            <option defaultValue></option>
                                             <option value="Qualified">Qualified</option>
                                             <option value="Incompetent">Incompetent</option>
                                         </select>
+                                        {displayCswarn?<p className="fw-light fst-italic text-start text-danger">Please select the course status of the user</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>

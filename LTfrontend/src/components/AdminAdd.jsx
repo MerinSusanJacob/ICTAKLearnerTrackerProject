@@ -229,12 +229,12 @@ return (
                                             name="roleInputs"
                                             value={inputs.roleInputs}
                                             onChange={inputHandler}>
-                                            <option defaultValue>-Select-</option>
+                                            <option defaultValue></option>
                                             <option value="Admin">Admin</option>
                                             <option value="Placement Officer">Placement Officer</option>
                                             <option value="Training Head">Training Head</option>
                                         </select>
-                                        {displayRolewarn?<p className="fw-light fst-italic text-start text-danger">Please select a role for the user</p>:<p></p>}
+                                            {displayRolewarn?<p className="fw-light fst-italic text-start text-danger">Please select a role for the user</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
