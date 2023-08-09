@@ -13,6 +13,7 @@ import ictlogo from "../ictlogo.png";
 
 const Sidebar = () => {
   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+  let ActiveLink = 'activeLink'
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
 
@@ -20,36 +21,43 @@ const Sidebar = () => {
         {/* Header of the Sidebar */}
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="#" className="text-decoration-none" style={{ color: 'inherit' }}>
-            <img src={ictlogo} alt="logo" style={{ height: '3vmin' }}/> ICTAK
+            <img src={ictlogo} alt="logo" style={{ height: '3vmin' }} /> ICTAK
           </a>
         </CDBSidebarHeader>
 
-        {/*Main Content of Sidebar  */}
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-
-            <NavLink exact to="/ahome" activeClassName="activeClicked">
-              {userRole === 'Admin' && (
-                <>
-                  <CDBSidebarMenuItem icon="users">Users</CDBSidebarMenuItem>
-                </>
-              )}
+            <NavLink
+              exact
+              to="/ahome"
+              isActive={({ match }) => match}
+              className={userRole === 'Admin' ? ActiveLink : ''}
+            >
+              <CDBSidebarMenuItem className={userRole === 'Admin' ? ActiveLink : ''} icon="users">
+                Users
+              </CDBSidebarMenuItem>
             </NavLink>
 
-            <NavLink exact to="/thome" activeClassName="activeClicked">
-              {userRole !== 'Placement Officer' && (
-                <>
-                  <CDBSidebarMenuItem icon="book">Learners</CDBSidebarMenuItem>
-                </>
-              )}
+            <NavLink
+              exact
+              to="/thome"
+              isActive={({ match }) => match}
+              className={userRole !== 'Placement Officer' ? ActiveLink : ''}
+            >
+              <CDBSidebarMenuItem className={userRole !== 'Placement Officer' ? ActiveLink : ''} icon="book">
+                Learners
+              </CDBSidebarMenuItem>
             </NavLink>
 
-            <NavLink exact to="/phome" activeClassName="activeClicked">
-              {userRole !== 'Training Head' && (
-                <>
-                  <CDBSidebarMenuItem icon="briefcase">Placement</CDBSidebarMenuItem>
-                </>
-              )}
+            <NavLink
+              exact
+              to="/phome"
+              isActive={({ match }) => match}
+              className={userRole !== 'Training Head' ? ActiveLink : ''}
+            >
+              <CDBSidebarMenuItem className={userRole !== 'Training Head' ? ActiveLink : ''} icon="briefcase">
+                Placement
+              </CDBSidebarMenuItem>
             </NavLink>
 
           </CDBSidebarMenu>

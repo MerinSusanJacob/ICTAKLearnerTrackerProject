@@ -51,3 +51,7 @@ header {
  {
   color: white;
 }
+
+.active .activeLink {
+  background-color: #60688e !important; 
+}
