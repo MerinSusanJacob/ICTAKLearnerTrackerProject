@@ -26,7 +26,7 @@ const Login = () => {
       .then((response) => {
         if (response.data.message === "Login Successfull!!") {
           const token = response.data.token;
-          const role = response.data.data.role;
+          const role = response.data.data.roleInputs;
           const nameUser = response.data.data.name;
           sessionStorage.setItem("userToken", token);
           sessionStorage.setItem("userRole", role);

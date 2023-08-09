@@ -115,7 +115,7 @@ const AdminHome = () => {
                     <td>{value.email}</td>
                     <td>{value.username}</td>
                     <td>{value.password}</td>
-                    <td>{value.role}</td>
+                    <td>{value.roleInputs}</td>
                     <td><Button className="btn btn-success" onClick={() => updateUser(value)}><ion-icon name="create"></ion-icon></Button></td>
                     <td><Button className="btn btn-danger" onClick={() => deleteUser(value._id)}><ion-icon name="close-circle"></ion-icon></Button></td>
                   </tr>

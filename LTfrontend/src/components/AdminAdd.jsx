@@ -27,6 +27,7 @@ const AdminAdd = (props) => {
         setInputs({
             ...inputs, [name]: value
         });
+        console.log(inputs);
     }
 
     const submitHandler = () => {
@@ -38,9 +39,8 @@ const AdminAdd = (props) => {
             name: inputs.name,
             email: inputs.email,
             username: inputs.username,
-            password: inputs.password
-
-
+            password: inputs.password,
+            roleInputs:inputs.roleInputs
         }
 
 
@@ -175,13 +175,13 @@ const AdminAdd = (props) => {
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">
                                     <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-                                        <label htmlFor="role" className="form-label">Role:</label>
+                                        <label htmlFor="roleInputs" className="form-label">Role:</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
                                         <select className="form-select"
                                             aria-label="Default select example"
-                                            name="role"
-                                            value={inputs.role}
+                                            name="roleInputs"
+                                            value={inputs.roleInputs}
                                             onChange={inputHandler}>
                                             <option defaultValue>-Select-</option>
                                             <option value="Admin">Admin</option>
