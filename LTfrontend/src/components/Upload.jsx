@@ -138,7 +138,13 @@ const Upload = () => {
             </Link>
 
             <Form.Field>
-              <a href="https://docs.google.com/spreadsheets/d/1lFSa_wh8wRtwZSuyVfRSwRsH2VuUldWJT1mZEM3uLwY/edit?usp=sharing" download style={{ color: "red" }}>Click here to download a sample csv file</a>
+              <a
+                href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQFzyD3UE2ZtUbTt0Kn21zvH1aOPD6tEc7oGGezlGiiJozZxuS1zqX4YOZu1wxQbg_fiGKwEmy4L_N_/pub?gid=0&single=true&output=csv"
+                download
+                style={{ color: "red" }}
+              >
+                Click here to download a sample csv file
+              </a>
             </Form.Field>
           </Form>
         </Segment>
