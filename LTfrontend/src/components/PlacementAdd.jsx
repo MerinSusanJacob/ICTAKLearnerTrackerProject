@@ -4,10 +4,10 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 const PlacementAdd = (props) => {
-    console.log("props data", props.data);
+    //console.log("props data", props.data);
     const [inputs, setInputs] = useState(props.data);
-    // const navigate=useNavigate();
 
+    // function to handle inputs
     const inputHandler = (e) => {
         const { name, value } = e.target;
         setInputs({
@@ -15,8 +15,8 @@ const PlacementAdd = (props) => {
         });
     }
 
+    //function to submit the placement status update
     const submitHandler = () => {
-
         if (props.method === "put") {
             axios.put(`http://localhost:5000/api/putpdata/${inputs._id}`, inputs)
                 .then((response) => {
@@ -33,6 +33,7 @@ const PlacementAdd = (props) => {
     }
     return (
         <div>
+            {/* to display Learner form - all the input fields except Placement status are disabled */}
             <div className="container w-50 mt-5 pt-5 bg-secondary-subtle rounded">
                 <h3>Learner's form</h3>
                 <br></br>

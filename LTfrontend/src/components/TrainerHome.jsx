@@ -9,18 +9,17 @@ const Trainerhead = () => {
   const [data, setData] = useState([]);
   const [updation, setUpdation] = useState(false);
   const [singleval, setSingleval] = useState([]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
   const [loading, setLoading] = useState(true);
 
-
+  //for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const pageSize = 5;//Number of item per page
+  
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
 
-  const pageSize = 5;//Number of item per page
-
+  //to get Learners data from database
   const fetchDatafromAPI = (pageNumber) => {
     return axios
       .get(`http://localhost:5000/api/getldata/${userToken}/${userRole}`)
@@ -39,20 +38,18 @@ const Trainerhead = () => {
       })
       .catch((err) => console.log(err));
   };
+
   const updateLearner = (val) => {
     setUpdation(true);
     setSingleval(val);
   };
 
-
+  //to delete Learner data
   const deleteLearner = (id) => {
-
     let data = {
-
       token: userToken,
       role: userRole,
     }
-
     axios
       .delete(`http://localhost:5000/api/delldata/${id}`, data)
       .then((response) => {
@@ -97,17 +94,20 @@ const Trainerhead = () => {
 
   let finalJSX =
     <div className="container w-75 mt-4 pt-4">
+      {/* Button to add Learner data using form */}
       <Link to="/tadd">
         <Button variant="success" className="mb-3">
           <ion-icon name="person-add-outline" size="large"></ion-icon>
         </Button>
       </Link>
       &nbsp;&nbsp;&nbsp;
+      {/* Button to add Learner data using csv upload */}
       <Link to="/upload">
         <Button variant="success" className="mb-3">
           <ion-icon name="cloud-upload" size="large"></ion-icon>
         </Button>
       </Link>
+      {/* to display learner data in a table */}
       {loading ?
         (<p>Loading data..</p>
         ) :

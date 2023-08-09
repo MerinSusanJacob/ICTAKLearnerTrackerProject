@@ -6,10 +6,11 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 const TrainerAdd = (props) => {
-    console.log("props data", props.data);
+    //console.log("props data", props.data);
     const [inputs, setInputs] = useState(props.data);
     const navigate = useNavigate();
 
+    //to display from validation warnings
     const[displayLid,setDisplayLid]=useState(false);
     const[displayNamewarn,setDisplayNamewarn]=useState(false);
     const[displayCwarn,setDisplayCwarn]=useState(false);
@@ -21,6 +22,7 @@ const TrainerAdd = (props) => {
     const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
     const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
 
+    // function to handle inputs from form
     const inputHandler = (e) => {
         setDisplayLid(false);
         setDisplayNamewarn(false);
@@ -35,6 +37,7 @@ const TrainerAdd = (props) => {
         });
     }
 
+    // function to validate form inputs
     const validateForm=()=>{
         let regexLid=/^[a-zA-Z0-9]+$/
         let regexName=/^[a-zA-Z\s]+$/
@@ -67,6 +70,7 @@ const TrainerAdd = (props) => {
         }
       };
 
+    // function to handle from inputs when submit button is clicked
     const submitHandler = () => {
         if (!validateForm()) {
             return; 
@@ -86,8 +90,7 @@ const TrainerAdd = (props) => {
 
         }
 
-        //console.log("button clicked",inputs);
-
+        // post function
         if (props.method === "post") {
             axios.post(`http://localhost:5000/api/postldata`, data)
                 .then((response) => {
@@ -102,6 +105,7 @@ const TrainerAdd = (props) => {
                 })
                 .catch((err) => { console.log(err) })
         }
+        // update function
         if (props.method === "put") {
             axios.put(`http://localhost:5000/api/putldata/${inputs._id}`, data)
                 .then((response) => {
@@ -116,7 +120,7 @@ const TrainerAdd = (props) => {
                 .catch((err) => { console.log(err) })
         }
     }
-
+    // to authenticate
     if (userRole !== 'Admin' && userRole !== 'Training Head') {
         return (
             <div className="container" align="center" style={{ marginTop: '120px' }}>
@@ -137,6 +141,7 @@ const TrainerAdd = (props) => {
 
 return (
         <div>
+            {/* Learners form */}
             <div className="container w-50 mt-5 pt-5  bg-secondary-subtle rounded">
                 <h3>Learner's form</h3>
                 <div className="row">

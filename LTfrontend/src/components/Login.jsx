@@ -11,16 +11,19 @@ const Login = () => {
   const [showAlert, setShowAlert] = useState(false); // State variable for showing the alert
   const [alertMessage, setAlertMessage] = useState(""); // State variable to hold the alert message
 
+  //function to handle inputs from Login form
   const inputHandler = (e) => {
-    console.log("onchange");
+    //console.log("onchange");
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
-    console.log(user);
+    //console.log(user);
   };
+
+  // function to handle login
   const addHandler = () => {
-    console.log("Clicked", user);
+    //console.log("Clicked", user);
     axios
       .post("http://localhost:5000/api/login", user)
       .then((response) => {
@@ -42,13 +45,7 @@ const Login = () => {
       .catch((err) => console.log(err));
   };
 
-  // Function to navigate to the home page
-  // const navigateToHome = () => {
-  //   setTimeout(() => {
-  //     navigate("/home");
-  //   }, 2000); // Navigate after 3 seconds (adjust the duration as needed)
-  // };
-
+  // to direct the user to the respective page after login
   const navigateToHome = (role) => {
     console.log("login");
     if (role === 'Admin') {
@@ -95,6 +92,7 @@ const Login = () => {
                 onChange={inputHandler}
               />
             </div>
+
             {/* Password */}
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12">
               <label htmlFor="" className="form-label d-flex text-right">
@@ -142,7 +140,6 @@ const Login = () => {
       </footer>
       {/* FOOTER ENDS */}
     </div>
-
   );
 };
 

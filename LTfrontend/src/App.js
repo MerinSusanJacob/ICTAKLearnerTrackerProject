@@ -16,8 +16,6 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} ></Route>
-
-
         <Route path="/thome" element={<Main child={<TrainerHome />} />} />
         <Route path="/phome" element={<Main child={<PlacementHome />} />} />
         <Route path="/tadd" element={<Main child={<TrainerAdd method="post" data={
@@ -40,11 +38,9 @@ function App() {
             roleInputs: ""
           }
         } />} />} />
-        <Route path="/upload" element={<Main child={<Upload />} />} />
-        <Route path="/sidebar" element={<Sidebar />} />
+        <Route path="/upload" element={<Main child={<Upload/>} />} />
+        <Route path="/sidebar" element={<Sidebar/>} />
       </Routes>
-
-
     </div>
   );
 }

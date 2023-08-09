@@ -6,19 +6,20 @@ import AdminAdd from './AdminAdd'
 import Swal from 'sweetalert2'
 
 const AdminHome = () => {
+
   const [data, setData] = useState([]);
   const [updation, setUpdation] = useState(false);
   const [singleval, setSingleval] = useState([]);
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+  const [loading, setLoading] = useState(true);
 
-
+  //for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
-  const [loading, setLoading] = useState(true);
   const pageSize = 5;//Number of item per page
 
+  //get Users data from database
   const fetchDatafromAPI = (pageNumber) => {
     return axios
       .get(`http://localhost:5000/api/getudata/${userToken}/${userRole}`)
@@ -43,6 +44,7 @@ const AdminHome = () => {
     setSingleval(val);
   }
 
+  //delete users
   const deleteUser = (id) => {
     axios.delete(`http://localhost:5000/api/deludata/${id}`)
       .then((response) => {
@@ -83,6 +85,7 @@ const AdminHome = () => {
     }
   }
 
+  // to display users data
   let finalJSX =
     <div className="container w-75 mt-4 pt-4">
       <Link to="/aadd">

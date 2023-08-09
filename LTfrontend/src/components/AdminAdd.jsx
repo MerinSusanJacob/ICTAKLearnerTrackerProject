@@ -8,12 +8,12 @@ import Swal from 'sweetalert2'
 const AdminAdd = (props) => {
     //console.log("props data", props.data);
     const [inputs, setInputs] = useState(props.data);
-    const navigate = useNavigate();
     const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
     const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
     const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+    const navigate = useNavigate();
 
-
+    // to display form validation warning
     const[displayNamewarn,setDisplayNamewarn]=useState(false);
     const[displayEmailwarn,setDisplayEmailwarn]=useState(false);
     const[displayUwarn,setDisplayUwarn]=useState(false);
@@ -27,7 +27,7 @@ const AdminAdd = (props) => {
         }
     }, [userRole]);
 
-
+    // to handle inputs from the form
     const inputHandler = (e) => {
         setDisplayNamewarn(false);
         setDisplayEmailwarn(false);
@@ -41,6 +41,7 @@ const AdminAdd = (props) => {
         console.log(inputs);
     }
 
+    // function to validate form inputs
     const validateForm=()=>{
         let regexName=/^[a-zA-Z\s]+$/
         let regexEmail=/^([A-Za-z0-9\_#.-]+)@([A-Za-z0-9\-]+).([a-z]{2,3})(.[a-z]{2,3})?$/
@@ -71,8 +72,8 @@ const AdminAdd = (props) => {
         }
       };
     
+    // function to handle inputs when submit button is clicked
     const submitHandler = () => {
-        //console.log("button clicked",inputs);
         if (!validateForm()) {
             return; 
           }
@@ -86,7 +87,7 @@ const AdminAdd = (props) => {
             password: inputs.password,
             roleInputs:inputs.roleInputs
         }
-
+        // post function
         if (props.method === "post") {
             axios.post(`http://localhost:5000/api/postudata`, data)
                 .then((response) => {
@@ -100,6 +101,7 @@ const AdminAdd = (props) => {
                 })
                 .catch((err) => { console.log(err) })
         }
+        // update function
         if (props.method === "put") {
             axios.put(`http://localhost:5000/api/putudata/${inputs._id}`, inputs)
                 .then((response) => {
@@ -114,8 +116,8 @@ const AdminAdd = (props) => {
                 .catch((err) => { console.log(err) })
         }
     }
-
-    if (userRole !== 'Admin') {
+        // to authenticate
+        if (userRole !== 'Admin') {
         return (
             <div className="container" align="center" style={{ marginTop: '120px' }}>
                 <Segment style={{ border: 'none' }}>
@@ -136,6 +138,7 @@ const AdminAdd = (props) => {
 
 return (
         <div>
+            {/* Users Form */}
             <div className="container w-50 mt-5 pt-5 bg-secondary-subtle rounded">
                 <h3>Add Users</h3>
                 <br></br>

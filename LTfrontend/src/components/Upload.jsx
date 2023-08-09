@@ -12,6 +12,7 @@ const Upload = () => {
   const [tableRows, setTableRows] = useState([]);
   const [values, setValues] = useState([]);
   //   const [jsonData, setJsonData] = useState([]);
+
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
 
@@ -36,10 +37,9 @@ const Upload = () => {
     });
   };
 
-
+ //to send data from csv file to database
   const sendDataToAPI = () => {
     if (parsedData.length > 0) {
-
       axios.post('http://localhost:5000/api/learner/upload', parsedData, config)
         .then((response) => {
           console.log(response.data)
@@ -70,6 +70,7 @@ const Upload = () => {
     }
   };
 
+  //to authenticate users
   if (userRole !== 'Admin' && userRole !== 'Training Head') {
     return (
       <div className="container" align="center" style={{ marginTop: '120px' }}>

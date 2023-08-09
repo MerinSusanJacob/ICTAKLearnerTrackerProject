@@ -10,19 +10,18 @@ const PlacementHome = () => {
   const [data, setData] = useState([]);
   const [updation, setUpdation] = useState(false);
   const [singleval, setSingleval] = useState([]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
   const [loading, setLoading] = useState(true);
 
+  //for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const pageSize = 5;//Number of item per page
+  
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+  //console.log(userRole);
 
-  const pageSize = 5;//Number of item per page
-
-  console.log(userRole);
-
+  //to get learner data from database
   const fetchDatafromAPI = (pageNumber) => {
     return axios
       .get(`http://localhost:5000/api/getpdata/${userToken}/${userRole}`)
@@ -78,7 +77,7 @@ const PlacementHome = () => {
 
     <div className="container w-75 mt-5 pt-5">
 
-      {/* <a href="/tadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a> */}
+     {/* to display learner data */}
       {loading ?
         (<p>Loading data..</p>
         ) :

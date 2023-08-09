@@ -1,7 +1,6 @@
 import React from 'react'
 import ictlogo from "../ictlogo.png";
 
-
 const Footer = () => {
   const currentYear = new Date().getFullYear()
   return (

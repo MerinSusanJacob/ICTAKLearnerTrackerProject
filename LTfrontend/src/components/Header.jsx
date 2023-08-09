@@ -7,14 +7,13 @@ const Header = () => {
   const [userName, setUsername] = useState(sessionStorage.getItem("userName"));
   const navigate = useNavigate();
   const logout = () => {
-    // Clear sessionStorage
-    sessionStorage.clear();
-
-    // Clear console output
-    console.clear();
+    sessionStorage.clear(); // Clear sessionStorage
+    console.clear(); // Clear console output
     navigate("/")
   }
+
   return (
+    
     <div className="w-100 m-0 p-0">
       <Navbar bg="dark" variant="dark" expand="lg" className="p-3">
         <Navbar.Brand href="#">LearnerTracker</Navbar.Brand>
