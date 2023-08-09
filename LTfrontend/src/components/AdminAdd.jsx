@@ -6,12 +6,19 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 const AdminAdd = (props) => {
-    console.log("props data", props.data);
+    //console.log("props data", props.data);
     const [inputs, setInputs] = useState(props.data);
     const navigate = useNavigate();
     const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
     const [userID, setUserID] = useState(sessionStorage.getItem("userId"))
     const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+
+
+    const[displayNamewarn,setDisplayNamewarn]=useState(false);
+    const[displayEmailwarn,setDisplayEmailwarn]=useState(false);
+    const[displayUwarn,setDisplayUwarn]=useState(false);
+    const[displayPwarn,setDisplayPwarn]=useState(false);
+    const[displayRolewarn,setDisplayRolewarn]=useState(false);
 
     useEffect(() => {
         // Redirect user if not authorized
@@ -21,8 +28,12 @@ const AdminAdd = (props) => {
     }, [userRole]);
 
 
-
     const inputHandler = (e) => {
+        setDisplayNamewarn(false);
+        setDisplayEmailwarn(false);
+        setDisplayUwarn(false);
+        setDisplayPwarn(false);
+        setDisplayRolewarn(false);
         const { name, value } = e.target;
         setInputs({
             ...inputs, [name]: value
@@ -30,8 +41,41 @@ const AdminAdd = (props) => {
         console.log(inputs);
     }
 
+    const validateForm=()=>{
+        let regexName=/^[a-zA-Z\s]+$/
+        let regexEmail=/^([A-Za-z0-9\_#.-]+)@([A-Za-z0-9\-]+).([a-z]{2,3})(.[a-z]{2,3})?$/
+        let regexUsername=/^[a-zA-Z0-9]{5,}$/
+        let regexPass=/^[a-zA-Z0-9@$#&]{8,}$/
+        if(!regexName.test(inputs.name)){
+            setDisplayNamewarn(true);
+            return false;
+        }
+        else if(!regexEmail.test(inputs.email)){
+            setDisplayEmailwarn(true);
+            return false;
+        }
+        else if(!regexUsername.test(inputs.username)){
+            setDisplayUwarn(true);
+            return false;
+        } 
+        else if(!regexPass.test(inputs.password)){
+            setDisplayPwarn(true);
+            return false;
+        }
+        else if(inputs.roleInputs.length==0){
+            setDisplayRolewarn(true);
+            return false;
+        }
+        else{
+          return true;
+        }
+      };
+    
     const submitHandler = () => {
         //console.log("button clicked",inputs);
+        if (!validateForm()) {
+            return; 
+          }
         let data = {
             userId: userID,
             token: userToken,
@@ -42,8 +86,6 @@ const AdminAdd = (props) => {
             password: inputs.password,
             roleInputs:inputs.roleInputs
         }
-
-
 
         if (props.method === "post") {
             axios.post(`http://localhost:5000/api/postudata`, data)
@@ -92,14 +134,14 @@ const AdminAdd = (props) => {
     }
 
 
-    return (
+return (
         <div>
             <div className="container w-50 mt-5 pt-5 bg-secondary-subtle rounded">
                 <h3>Add Users</h3>
                 <br></br>
                 <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                        <div className="row g-4">
+                        <div className="row g-1">
                             {/* Name */}
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">
@@ -114,6 +156,7 @@ const AdminAdd = (props) => {
                                             value={inputs.name}
                                             onChange={inputHandler}
                                         />
+                                        {displayNamewarn?<p className="fw-light fst-italic text-start text-danger">Must contain letters only</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -131,6 +174,7 @@ const AdminAdd = (props) => {
                                             value={inputs.email}
                                             onChange={inputHandler}
                                         />
+                                        {displayEmailwarn?<p className="fw-light fst-italic text-start text-danger">Must be a valid Email ID</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -149,6 +193,7 @@ const AdminAdd = (props) => {
                                             value={inputs.username}
                                             onChange={inputHandler}
                                         />
+                                        {displayUwarn?<p className="fw-light fst-italic text-start text-danger">Must be min 5 characters with alphabets and numbers only</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -167,6 +212,7 @@ const AdminAdd = (props) => {
                                             value={inputs.password}
                                             onChange={inputHandler}
                                         />
+                                    {displayPwarn?<p className="fw-light fst-italic text-start text-danger">Must be min 8 characters with alphabets, numbers and @$#& only</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +224,7 @@ const AdminAdd = (props) => {
                                         <label htmlFor="roleInputs" className="form-label">Role:</label>
                                     </div>
                                     <div className="col col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
-                                        <select className="form-select"
+                                        <select className="form-select required"
                                             aria-label="Default select example"
                                             name="roleInputs"
                                             value={inputs.roleInputs}
@@ -188,6 +234,7 @@ const AdminAdd = (props) => {
                                             <option value="Placement Officer">Placement Officer</option>
                                             <option value="Training Head">Training Head</option>
                                         </select>
+                                        {displayRolewarn?<p className="fw-light fst-italic text-start text-danger">Please select a role for the user</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>

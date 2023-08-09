@@ -37,7 +37,7 @@ function App() {
             email: "",
             username: "",
             password: "",
-            role: ""
+            roleInputs: ""
           }
         } />} />} />
         <Route path="/upload" element={<Main child={<Upload />} />} />
