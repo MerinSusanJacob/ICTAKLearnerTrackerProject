@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 // import { useNavigate } from "react-router-dom"
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const PlacementAdd = (props) => {
-    console.log("props data", props.data);
+    //console.log("props data", props.data);
     const [inputs, setInputs] = useState(props.data);
-    // const navigate=useNavigate();
 
+    // function to handle inputs
     const inputHandler = (e) => {
         const { name, value } = e.target;
         setInputs({
@@ -14,32 +15,17 @@ const PlacementAdd = (props) => {
         });
     }
 
+    //function to submit the placement status update
     const submitHandler = () => {
-        //console.log("button clicked",inputs);
-
-        // if(props.method==="post"){
-        //     axios.post(`http://localhost:5000/api/postldata`,inputs)
-        //     .then((response)=>{
-        //         if(response.data.message==="Posted successfully"){
-        //             console.log("response post",response);
-        //             alert(response.data.message); 
-        //             navigate('/thome');
-        //         }
-        //         else{
-        //             alert(response.data.message);
-        //         }
-        //     })
-        //     .catch((err)=>{console.log(err)})   
-        // }
         if (props.method === "put") {
             axios.put(`http://localhost:5000/api/putpdata/${inputs._id}`, inputs)
                 .then((response) => {
                     if (response.data.message === "Updated successfully") {
-                        alert(response.data.message);
+                        Swal.fire('', response.data.message, 'success');
                         window.location.reload(false);
                     }
                     else {
-                        alert(response.data.message);
+                        Swal.fire('Sorry', response.data.message, '');
                     }
                 })
                 .catch((err) => { console.log(err) })
@@ -47,12 +33,13 @@ const PlacementAdd = (props) => {
     }
     return (
         <div>
+            {/* to display Learner form - all the input fields except Placement status are disabled */}
             <div className="container w-50 mt-5 pt-5 bg-secondary-subtle rounded">
                 <h3>Learner's form</h3>
                 <br></br>
                 <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                        <div className="row g-4">
+                        <div className="row g-2">
                             {/* LearnerId */}
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <div className="row">
@@ -214,7 +201,7 @@ const PlacementAdd = (props) => {
                                         <button className="btn btn-success" onClick={submitHandler}>Submit</button>
                                     </div>
                                     {/* Button */}
-                                    <div className="col col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3 mb-3">
+                                    <div className="col col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-3">
                                         <a href="/phome"><button className="btn btn-warning">Back to Dashboard</button></a>
                                     </div>
                                 </div>

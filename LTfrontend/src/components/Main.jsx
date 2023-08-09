@@ -6,16 +6,19 @@ import '../App.css'
 
 const Main = (props) => {
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col col-3 col-sm-3 col-md-3 col-lg-3">
-          <Sidebar />
-        </div>
-        <div className="col col-9 col-sm-9 col-md-9 col-lg-9">
-          {props.child}
-        </div>
+    <div className="main-container">
+      <div> {/* to display Sidebar */}
+        <Sidebar />
       </div>
-      <Footer />
+      <div className="main-content justify-content-between">
+        <header> {/* to display Header */}
+          <Header />
+        </header>
+        <main> {/* to display Main Content */}
+          {props.child} {/* to display the main content */}
+        </main>
+        <Footer /> {/* to display Footer */}
+      </div>
     </div>
   )
 }

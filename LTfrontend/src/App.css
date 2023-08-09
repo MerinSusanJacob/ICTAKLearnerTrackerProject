@@ -22,13 +22,36 @@
   color: #61dafb;
 }
 
-
-.content {
-  flex: 1;
-  padding: 20px;
+/* Main Container Styles */
+.main-container {
+  display: flex;
+  height: 100vh; /* Set the container to take the full viewport height */
 }
 
-.nav-pills li a:hover{
- background-color:blue;
+/* Main Content Styles */
+.main-content {
+  flex: 1; /* This will make the main content take the rest of the available space */
+  display: flex;
+  flex-direction: column;
 }
 
+/* Header Styles */
+header {
+  height: 40px; /* Set the height of the header as needed */
+}
+
+.navbar-black-bg {
+  background-color: black;
+}
+
+/* You can also adjust the text color and other styles as needed */
+.navbar-black-bg .navbar-brand,
+.navbar-black-bg .nav-link,
+.navbar-black-bg .nav-dropdown-title
+ {
+  color: white;
+}
+
+.active .activeLink {
+  background-color: #60688e !important; 
+}

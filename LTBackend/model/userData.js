@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
-    }, 
+    },
     email: {
         type: String,
         required: true,
@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    role: {
+    roleInputs: {
         type: String,
     },
     createdAt: {

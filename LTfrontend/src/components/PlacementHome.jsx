@@ -3,37 +3,42 @@ import axios from 'axios'
 import { Table, Button, Pagination } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PlacementAdd from './PlacementAdd';
-
-
+import Swal from 'sweetalert2'
 
 
 const PlacementHome = () => {
   const [data, setData] = useState([]);
   const [updation, setUpdation] = useState(false);
   const [singleval, setSingleval] = useState([]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
   const [loading, setLoading] = useState(true);
 
+  //for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const pageSize = 5;//Number of item per page
+  
   const [userToken, setUserToken] = useState(sessionStorage.getItem("userToken"))
   const [userRole, setUserrole] = useState(sessionStorage.getItem("userRole"));
+  //console.log(userRole);
 
-  const pageSize = 5;//Number of item per page
-
-  console.log(userRole);
-
+  //to get learner data from database
   const fetchDatafromAPI = (pageNumber) => {
     return axios
-      .get("http://localhost:5000/api/getldata/" + userToken)
+      .get(`http://localhost:5000/api/getpdata/${userToken}/${userRole}`)
       .then((response) => {
-        console.log("data from get", response.data);
-        const startIndex = (pageNumber - 1) * pageSize;
-        const endIndex = startIndex + pageSize;
-        const paginatedData = response.data.slice(startIndex, endIndex);
-        setData(paginatedData);
-        setTotalPages(Math.ceil(response.data.length / pageSize));
+        console.log("Data from get" + response.data);
+        if (response.data.message === "success") {
+          console.log("data from get", response.data);
+          const resData = response.data.data;
+          const startIndex = (pageNumber - 1) * pageSize;
+          const endIndex = startIndex + pageSize;
+          const paginatedData = resData.slice(startIndex, endIndex);
+          setData(paginatedData);
+          setTotalPages(Math.ceil(resData.length / pageSize));
+        } else {
+          Swal.fire('Sorry', response.data.message, '');
+          //console.log(response.data.message);
+        }
       })
       .catch(err => console.log(err));
   };
@@ -42,20 +47,6 @@ const PlacementHome = () => {
     setUpdation(true);
     setSingleval(val);
   }
-
-  // const deleteLearner=(id)=>{
-  //   axios.delete(`http://localhost:5000/api/delldata/${id}`)
-  //   .then((response)=>{
-  //       if(response.data.message==="Deleted successfully"){
-  //         alert(response.data.message); 
-  //               fetchDatafromAPI();
-  //           }
-  //           else{
-  //               alert(response.data.message);
-  //           }
-  //   })
-  //   .catch((err)=>{console.log(err)})
-  // }
 
   useEffect(() => {
     fetchDatafromAPI(currentPage)
@@ -72,7 +63,7 @@ const PlacementHome = () => {
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) { 
+    if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
@@ -84,17 +75,17 @@ const PlacementHome = () => {
 
   let finalJSX =
 
-    <div className="container w-75 mt-4 pt-4">
+    <div className="container w-75 mt-5 pt-5">
 
-      {/* <a href="/tadd"><button className="btn btn-success d-flex"><ion-icon name="person-add-outline" size="large"></ion-icon></button></a> */}
+     {/* to display learner data */}
       {loading ?
         (<p>Loading data..</p>
         ) :
         data && data.length > 0 ? ( // Check if data is not undefined and has some elements
           <>
-            <Table responsive striped bordered hover>
+            <Table responsive bordered hover>
               <thead>
-                <tr>
+                <tr class="table-success">
                   <th>Learner Id</th>
                   <th>Name</th>
                   <th>Course</th>
@@ -102,6 +93,7 @@ const PlacementHome = () => {
                   <th>Batch</th>
                   <th>Course Status</th>
                   <th>Placement Status</th>
+                  <th>Update</th>
                 </tr>
               </thead>
               <tbody>
