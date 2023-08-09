@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const userData = require('../model/userData');
-const jwt = require("jsonwebtoken")
-const adm = require("../authz.js/adm")
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
+const userData = require('../model/userData');
+const jwt = require("jsonwebtoken"); //for authorisation
+const adm = require("../authz.js/adm"); //for authentication
 
 
-//to get user data  
+//to get user data for users page
 router.get('/getudata/:token/:role', adm, async (req, res) => {
     const data = await userData.find();
     try {
@@ -28,7 +28,7 @@ router.get('/getudata/:token/:role', adm, async (req, res) => {
     }
 })
 
-//to post user data
+//to post user data to database
 router.post('/postudata', (req, res) => {
     try {
         const item = req.body;

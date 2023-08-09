@@ -5,10 +5,10 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 const learnerData = require('../model/learnerData');
-const jwt = require('jsonwebtoken')
-const auth = require('../authz.js/auth');
+const jwt = require('jsonwebtoken'); //for authorisation
+const auth = require('../authz.js/auth'); //for authentication
 
-//to get data
+//to get learner data for learners page
 
 router.get('/getldata/:token/:role', auth, async (req, res) => {
     const data = await learnerData.find();
@@ -27,7 +27,7 @@ router.get('/getldata/:token/:role', auth, async (req, res) => {
     }
 })
 
-//to post data
+//to post learner data from learners' form
 router.post('/postldata', auth, (req, res) => {
     try {
         const item = req.body;
@@ -48,7 +48,7 @@ router.post('/postldata', auth, (req, res) => {
     }
 })
 
-//to update data
+//to update learner data
 router.put('/putldata/:id', auth, async (req, res) => {
     try {
         const item = req.body;
@@ -60,7 +60,7 @@ router.put('/putldata/:id', auth, async (req, res) => {
     }
 })
 
-//to delete data
+//to delete learner data
 router.delete('/delldata/:id', (req, res) => {
 
     try {
@@ -73,7 +73,7 @@ router.delete('/delldata/:id', (req, res) => {
     }
 })
 
-//to upload data
+//to upload learner data through csv file 
 const { csvUpload } = require("../controller/learnerController");
 router.route("/learner/upload").post(csvUpload);
 

@@ -4,11 +4,11 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken') //for authorisation
 const learnerData = require('../model/learnerData');
-const authpl = require("../authz.js/authpl")
+const authpl = require("../authz.js/authpl") //for authentication
 
-//to get data
+//to get learner data for placement page
 router.get('/getpdata/:token/:role', authpl, async (req, res) => {
     const data = await learnerData.find();
     try {
@@ -26,19 +26,8 @@ router.get('/getpdata/:token/:role', authpl, async (req, res) => {
     }
 })
 
-//to post data
-router.post('/postpdata', (req, res) => {
-    try {
-        const item = req.body;
-        const newdata = new learnerData(item);
-        newdata.save();
-        res.json({ message: "Posted successfully" });
-    } catch (error) {
-        res.json({ message: "Post not successful" });
-    }
-})
 
-//to update data
+//to update placement status on placement page
 router.put('/putpdata/:id', async (req, res) => {
     try {
         const item = req.body;
