@@ -39,3 +39,15 @@
 header {
   height: 40px; /* Set the height of the header as needed */
 }
+
+.navbar-black-bg {
+  background-color: black;
+}
+
+/* You can also adjust the text color and other styles as needed */
+.navbar-black-bg .navbar-brand,
+.navbar-black-bg .nav-link,
+.navbar-black-bg .nav-dropdown-title
+ {
+  color: white;
+}

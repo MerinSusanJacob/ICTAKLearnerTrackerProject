@@ -39,7 +39,7 @@ const TrainerAdd = (props) => {
 
     // function to validate form inputs
     const validateForm=()=>{
-        let regexLid=/^[a-zA-Z0-9]+$/
+        let regexLid=/^[a-zA-Z0-9\_#. -]+$/
         let regexName=/^[a-zA-Z\s]+$/
         if(!regexLid.test(inputs.learnerid)){
             setDisplayLid(true);

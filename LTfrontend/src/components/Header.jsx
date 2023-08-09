@@ -15,7 +15,7 @@ const Header = () => {
   return (
     
     <div className="w-100 m-0 p-0">
-      <Navbar bg="dark" variant="dark" expand="lg" className="p-3">
+      <Navbar className="navbar-black-bg p-3" variant="dark" expand="lg">
         <Navbar.Brand href="#">LearnerTracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
