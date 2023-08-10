@@ -46,7 +46,7 @@ const AdminAdd = (props) => {
         let regexName=/^[a-zA-Z\s]+$/
         let regexEmail=/^([A-Za-z0-9\_#.-]+)@([A-Za-z0-9\-]+).([a-z]{2,3})(.[a-z]{2,3})?$/
         let regexUsername=/^[a-zA-Z0-9]{5,}$/
-        let regexPass=/^[a-zA-Z0-9@$#&]{8,}$/
+        let regexPass=/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
         if(!regexName.test(inputs.name)){
             setDisplayNamewarn(true);
             return false;
@@ -215,7 +215,7 @@ return (
                                             value={inputs.password}
                                             onChange={inputHandler}
                                         />
-                                    {displayPwarn?<p className="fw-light fst-italic text-start text-danger">Must be min 8 characters with alphabets, numbers and @$#& only</p>:<p></p>}
+                                    {displayPwarn?<p className="fw-light fst-italic text-start text-danger">Your password must be a minimum of 8 characters long and include at least one alphabet letter, one special character, and one number.</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
