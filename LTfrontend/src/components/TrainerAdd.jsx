@@ -39,7 +39,7 @@ const TrainerAdd = (props) => {
 
     // function to validate form inputs
     const validateForm=()=>{
-        let regexLid=/^[a-zA-Z0-9\_#. -]+$/
+        let regexLid=/^[a-zA-Z0-9-]+$/
         let regexName=/^[a-zA-Z\s]+$/
         if(!regexLid.test(inputs.learnerid)){
             setDisplayLid(true);
@@ -49,19 +49,19 @@ const TrainerAdd = (props) => {
             setDisplayNamewarn(true);
             return false;
         }
-        else if(inputs.course.length==0){
+        else if(inputs.course.length===0){
             setDisplayCwarn(true);
             return false;
         }
-        else if(inputs.project.length==0){
+        else if(inputs.project.length===0){
             setDisplayProwarn(true);
             return false;
         } 
-        else if(inputs.batch.length==0){
+        else if(inputs.batch.length===0){
             setDisplayBwarn(true);
             return false;
         }
-        else if(inputs.cstatus.length==0){
+        else if(inputs.cstatus.length===0){
             setDisplayCswarn(true);
             return false;
         }
@@ -161,7 +161,7 @@ return (
                                             value={inputs.learnerid}
                                             onChange={inputHandler}
                                         />
-                                        {displayLid?<p className="fw-light fst-italic text-start text-danger">Must contain letters and Numbers only</p>:<p></p>}
+                                        {displayLid?<p className="fw-light fst-italic text-start text-danger">Must contain letters,numbers and - only</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
@@ -271,7 +271,7 @@ return (
                                             <option value="Qualified">Qualified</option>
                                             <option value="Incompetent">Incompetent</option>
                                         </select>
-                                        {displayCswarn?<p className="fw-light fst-italic text-start text-danger">Please select the course status of the user</p>:<p></p>}
+                                        {displayCswarn?<p className="fw-light fst-italic text-start text-danger">Please select the course status of the learner</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>

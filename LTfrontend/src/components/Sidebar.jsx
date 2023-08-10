@@ -27,37 +27,52 @@ const Sidebar = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
+            {/* Users Link */}
             <NavLink
               exact
               to="/ahome"
               isActive={({ match }) => match}
               className={userRole === 'Admin' ? ActiveLink : ''}
             >
-              <CDBSidebarMenuItem className={userRole === 'Admin' ? ActiveLink : ''} icon="users">
-                Users
-              </CDBSidebarMenuItem>
+              {userRole === 'Admin' && (
+              <>
+                <CDBSidebarMenuItem className={userRole === 'Admin' ? ActiveLink : ''} icon="users">
+                  Users
+                </CDBSidebarMenuItem>
+              </>
+              )}
             </NavLink>
 
+            {/* Learners Link */}
             <NavLink
               exact
               to="/thome"
               isActive={({ match }) => match}
               className={userRole !== 'Placement Officer' ? ActiveLink : ''}
             >
-              <CDBSidebarMenuItem className={userRole !== 'Placement Officer' ? ActiveLink : ''} icon="book">
-                Learners
-              </CDBSidebarMenuItem>
+              {userRole !== 'Placement Officer' && (
+              <>
+                  <CDBSidebarMenuItem className={userRole !== 'Placement Officer' ? ActiveLink : ''} icon="book">
+                    Learners
+                  </CDBSidebarMenuItem>
+              </>
+              )}
             </NavLink>
-
+            
+            {/* Placement Link */}
             <NavLink
               exact
               to="/phome"
               isActive={({ match }) => match}
               className={userRole !== 'Training Head' ? ActiveLink : ''}
             >
+            {userRole !== 'Training Head' && (
+            <>
               <CDBSidebarMenuItem className={userRole !== 'Training Head' ? ActiveLink : ''} icon="briefcase">
                 Placement
               </CDBSidebarMenuItem>
+            </>
+            )}
             </NavLink>
 
           </CDBSidebarMenu>

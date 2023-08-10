@@ -45,9 +45,9 @@ const Upload = () => {
           console.log(response.data)
           if (response.data.status === 'OK') {
             Swal.fire({
-              title: 'Csv Added Successfully..!',
+              title: 'Data added successfully..!',
               showDenyButton: false,
-              confirmButtonText: 'Return to home',
+              confirmButtonText: 'Return to Dashboard',
             }).then((result) => {
               if (result.isConfirmed) {
                 Swal.fire('Saved!', '', 'success');
