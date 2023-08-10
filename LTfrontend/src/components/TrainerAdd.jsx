@@ -39,7 +39,7 @@ const TrainerAdd = (props) => {
 
     // function to validate form inputs
     const validateForm=()=>{
-        let regexLid=/^[a-zA-Z0-9\_#. -]+$/
+        let regexLid=/^[a-zA-Z0-9-]+$/
         let regexName=/^[a-zA-Z\s]+$/
         if(!regexLid.test(inputs.learnerid)){
             setDisplayLid(true);
@@ -161,7 +161,7 @@ return (
                                             value={inputs.learnerid}
                                             onChange={inputHandler}
                                         />
-                                        {displayLid?<p className="fw-light fst-italic text-start text-danger">Must contain letters and Numbers only</p>:<p></p>}
+                                        {displayLid?<p className="fw-light fst-italic text-start text-danger">Must contain letters,numbers and - only</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
