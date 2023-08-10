@@ -271,7 +271,7 @@ return (
                                             <option value="Qualified">Qualified</option>
                                             <option value="Incompetent">Incompetent</option>
                                         </select>
-                                        {displayCswarn?<p className="fw-light fst-italic text-start text-danger">Please select the course status of the user</p>:<p></p>}
+                                        {displayCswarn?<p className="fw-light fst-italic text-start text-danger">Please select the course status of the learner</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
