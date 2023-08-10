@@ -10,21 +10,49 @@ const Login = () => {
   const [user, setUser] = useState({});
   const [showAlert, setShowAlert] = useState(false); // State variable for showing the alert
   const [alertMessage, setAlertMessage] = useState(""); // State variable to hold the alert message
+  const [showPassword, setShowPassword] = useState(false);
 
   //function to handle inputs from Login form
   const inputHandler = (e) => {
     //console.log("onchange");
+
+    const { name, value } = e.target;
+
+    // Validate username: Alphabets or Numbers
+    if (name === "username") {
+      const isValidUsername = /^[a-zA-Z0-9]+$/.test(value);
+      if (!isValidUsername) {
+        setShowAlert(true);
+        setAlertMessage("Username must contain only alphabets or numbers.");
+      }
+    }
+
+    // Validate password: Alphabets, Special Characters, and Numbers
+    if (name === "password") {
+      const isValidPassword = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(value);
+      if (!isValidPassword) {
+        setShowAlert(true);
+        setAlertMessage("Password must contain at least one alphabet, one special character, and one number.");
+      }
+    }
+
+
+
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
     //console.log(user);
+
+
+
+
   };
 
   // function to handle login
   const addHandler = () => {
     //console.log("Clicked", user);
-    
+
     //warning for empty fields
     if (!user.username || !user.password) {
       setShowAlert(true); // Show the error alert
@@ -105,12 +133,25 @@ const Login = () => {
               <label htmlFor="" className="form-label d-flex text-right">
                 Password
               </label>
-              <input
-                type="password"
-                className="form-control pwd"
-                name="password"
-                onChange={inputHandler}
-              />
+              <div className="input-group">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="form-control pwd"
+                  name="password"
+                  onChange={inputHandler}
+                />
+                <button
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <i className="bi bi-eye"></i>
+                  ) : (
+                    <i className="bi bi-eye-slash"></i>
+                  )}
+                </button>
+              </div>
             </div>
             <br></br>
             <br></br>
