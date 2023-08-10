@@ -24,6 +24,13 @@ const Login = () => {
   // function to handle login
   const addHandler = () => {
     //console.log("Clicked", user);
+    
+    //warning for empty fields
+    if (!user.username || !user.password) {
+      setShowAlert(true); // Show the error alert
+      setAlertMessage("Please fill in all fields."); // Set the error alert message
+      return;
+    }
     axios
       .post("http://localhost:5000/api/login", user)
       .then((response) => {
