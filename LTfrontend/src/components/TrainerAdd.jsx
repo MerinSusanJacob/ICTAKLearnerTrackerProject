@@ -49,19 +49,19 @@ const TrainerAdd = (props) => {
             setDisplayNamewarn(true);
             return false;
         }
-        else if(inputs.course.length==0){
+        else if(inputs.course.length===0){
             setDisplayCwarn(true);
             return false;
         }
-        else if(inputs.project.length==0){
+        else if(inputs.project.length===0){
             setDisplayProwarn(true);
             return false;
         } 
-        else if(inputs.batch.length==0){
+        else if(inputs.batch.length===0){
             setDisplayBwarn(true);
             return false;
         }
-        else if(inputs.cstatus.length==0){
+        else if(inputs.cstatus.length===0){
             setDisplayCswarn(true);
             return false;
         }
