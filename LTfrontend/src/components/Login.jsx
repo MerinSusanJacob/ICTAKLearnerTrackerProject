@@ -53,12 +53,7 @@ const Login = () => {
   const addHandler = () => {
     //console.log("Clicked", user);
 
-    //warning for empty fields
-    if (!user.username || !user.password) {
-      setShowAlert(true); // Show the error alert
-      setAlertMessage("Please fill in all fields."); // Set the error alert message
-      return;
-    }
+   
     axios
       .post("http://localhost:5000/api/login", user)
       .then((response) => {
@@ -94,6 +89,8 @@ const Login = () => {
     }
   };
 
+  const isBothFieldsEmpty = !user.username && !user.password;
+
   return (
     <div style={{ backgroundImage: `url(${background})`, backgroundSize: "cover", height: "100vh" }}>
       <div className="row">
@@ -124,8 +121,13 @@ const Login = () => {
                 type="text"
                 className="form-control"
                 name="username"
+                id="username"
+                placeholder="Enter your username"
                 onChange={inputHandler}
               />
+               {showAlert && !user.username && (
+              <small className="text-danger">Username is required.</small>
+            )}
             </div>
 
             {/* Password */}
@@ -138,6 +140,8 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   className="form-control pwd"
                   name="password"
+                  id="password"
+                  placeholder="Enter your password"
                   onChange={inputHandler}
                 />
                 <button
@@ -151,7 +155,11 @@ const Login = () => {
                     <i className="bi bi-eye-slash"></i>
                   )}
                 </button>
+               
               </div>
+              {showAlert && !user.password && (
+              <small className="text-danger">Password is required.</small>
+            )}
             </div>
             <br></br>
             <br></br>
@@ -160,6 +168,9 @@ const Login = () => {
               <button className="btn btn-success w-100" onClick={addHandler}>
                 Login
               </button>
+              {showAlert && isBothFieldsEmpty && (
+              <small className="text-danger">Please fill in all fields.</small>
+            )}
             </div>
             {/* Display the Bootstrap Alert based on showAlert state */}
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 mt-3">
