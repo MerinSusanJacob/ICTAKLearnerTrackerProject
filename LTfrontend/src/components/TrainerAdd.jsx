@@ -10,7 +10,7 @@ const TrainerAdd = (props) => {
     const [inputs, setInputs] = useState(props.data);
     const navigate = useNavigate();
 
-    //to display from validation warnings
+    //to display form validation warnings
     const[displayLid,setDisplayLid]=useState(false);
     const[displayNamewarn,setDisplayNamewarn]=useState(false);
     const[displayCwarn,setDisplayCwarn]=useState(false);
