@@ -18,42 +18,16 @@ const Login = () => {
 
     const { name, value } = e.target;
 
-    // Validate username: Alphabets or Numbers
-    if (name === "username") {
-      const isValidUsername = /^[a-zA-Z0-9]+$/.test(value);
-      if (!isValidUsername) {
-        setShowAlert(true);
-        setAlertMessage("Username must contain only alphabets or numbers.");
-      }
-    }
-
-    // Validate password: Alphabets, Special Characters, and Numbers
-    if (name === "password") {
-      const isValidPassword = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(value);
-      if (!isValidPassword) {
-        setShowAlert(true);
-        setAlertMessage("Password must contain at least one alphabet, one special character, and one number.");
-      }
-    }
-
-
-
     setUser({
       ...user,
       [name]: value,
     });
     //console.log(user);
-
-
-
-
   };
 
   // function to handle login
   const addHandler = () => {
     //console.log("Clicked", user);
-
-   
     axios
       .post("http://localhost:5000/api/login", user)
       .then((response) => {

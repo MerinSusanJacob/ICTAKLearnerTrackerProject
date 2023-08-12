@@ -215,7 +215,7 @@ return (
                                             value={inputs.password}
                                             onChange={inputHandler}
                                         />
-                                    {displayPwarn?<p className="fw-light fst-italic text-start text-danger">Your password must be a minimum of 8 characters long and include at least one alphabet letter, one special character, and one number.</p>:<p></p>}
+                                    {displayPwarn?<p className="fw-light fst-italic text-start text-danger">Must be a minimum of 8 characters long and include at least one letter, one special character (@$!%*?&), and one number.</p>:<p></p>}
                                     </div>
                                 </div>
                             </div>
